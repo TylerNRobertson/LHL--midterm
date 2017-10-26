@@ -19,8 +19,10 @@ const usersRoutes = require("./routes/users");
 
 // Menu object routes
 const menuRoutes = require("./routes/menu");
-// Menu object routes
+// Order object routes
 const orderRoutes = require("./routes/order");
+// Customer object routes
+const customerRoutes = require("./routes/customer");
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -53,9 +55,12 @@ app.use("/api/menus", menuRoutes(DataHelpers));
 // Mount order routes
 app.use("/api/orders", orderRoutes(DataHelpers));
 
+// Mount order routes
+app.use("/api/customers", customerRoutes(DataHelpers));
+
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index_bernie_test");
 });
 
 app.listen(PORT, () => {

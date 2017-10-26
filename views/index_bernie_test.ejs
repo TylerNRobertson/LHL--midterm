@@ -8,46 +8,54 @@
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/app_test_get.js"></script>
   </head>
 
   <body>
+
     <header>
       <% include ./partials/header.ejs %>
     </header>
-    <section id="menu_items">
-      <div class="row">
-        <div class="card">
-          <img src="http://via.placeholder.com/275x150">
-          <div class="card_body">
-            <p>Menu Item description</p>
-            <p class="info">- Item Category</p>
-            <p class="info">- Dietary info</p>
-            <p class="info">Price: $10.99</p>
-            <button>Add to Order</button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="http://via.placeholder.com/275x150">
-          <div class="card_body">
-            <p>Menu Item description</p>
-            <p class="info">- Item Category</p>
-            <p class="info">- Dietary info</p>
-            <p class="info">Price: $10.99</p>
-            <button>Add to Order</button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="http://via.placeholder.com/275x150">
-          <div class="card_body">
-            <p>Menu Item description</p>
-            <p class="info">- Item Category</p>
-            <p class="info">- Dietary info</p>
-            <p class="info">Price: $10.99</p>
-            <button>Add to Order</button>
-          </div>
-        </div>
-      </div>
-  </section>
+    <section id="gettest">
+      <h1> GET TESTS </h1>
+      <section id="menutest"> <h4> menu test </h4> </section>
+
+      <section id="menuitemtest"> <h4> menu item test </h4> </section>
+
+      <section id="ordertest"> <h4> order test </h4> </section>
+
+      <section id="orderitemtest"> <h4> orderitem test </h4>  </section>
+
+      <section id="customertest"> <h4> customer test </h4>  </section>
+    </section>
+
+    <section id="posttest">
+      <h1> POST TESTS </h1>
+      <section id="postmenutest"> <h4> menu test </h4> </section>
+        <form action="/api/menus" method="POST">
+          <textarea name="menuname"  placeholder="name"></textarea>
+          <textarea name="menudesc" placeholder="description"></textarea>
+          <textarea name="menucat"  placeholder="category"></textarea>
+
+          <input type="submit" value="Make Menu">
+
+        </form>
+      <section id="postmenuitemtest"> <h4> menu item test </h4> </section>
+        <form action="/api/menus/item" method="POST">
+          <textarea name="mi_menuID"  placeholder="menuID"></textarea>
+          <textarea name="mi_foodID" placeholder="foodID"></textarea>
+          <textarea name="mi_cat"  placeholder="category"></textarea>
+
+          <input type="submit" value="Make Menu">
+
+        </form>
+      <section id="postordertest"> <h4> order test </h4> </section>
+
+      <section id="postorderitemtest"> <h4> orderitem test </h4>  </section>
+
+       <section id="postcustomertest"> <h4> customer test </h4>  </section>
+
+    </section>
+
   </body>
 </html>
