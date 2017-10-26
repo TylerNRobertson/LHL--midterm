@@ -23,9 +23,9 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary().unsigned();
       table.integer('customerId').unsigned();
       table.foreign('customerId').references('customer.id');
-      table.date('date_time_created');
-      table.date('date_time_pickup');
-      table.date('date_time_completed');
+      table.dateTime('date_time_created');
+      table.dateTime('date_time_pickup');
+      table.dateTime('date_time_completed');
       table.boolean('placed');
       table.boolean('payed');
       table.boolean('canceled');
