@@ -1,4 +1,5 @@
 exports.seed = function(knex, Promise) {
+<<<<<<< HEAD
       let rightNow = new Date().toISOString();
     return knex('customer').del()
         .then(function() {
@@ -36,3 +37,22 @@ exports.seed = function(knex, Promise) {
             });
         });
 }
+=======
+  return knex('customer').del()
+    .then(function () {
+      let rightNow = new Date();
+      return Promise.all([
+        knex('customer').insert({  id: 1,
+                                   first_name: 'Bernard',
+                                   last_name: 'Roach',
+                                   address  : 'Only the finest address',
+                                   phone    : 'BES-TPH-ONE#'
+                                 }),
+          knex('order').insert({  customerId: 1,
+                                date_time_created: rightNow.getSeconds(),
+                                date_time_pickup:  rightNow.setMinutes(rightNow.getMinutes() + 30).getSeconds(),
+                            }),
+      ]);
+    });
+};
+>>>>>>> 21c8482bf2667d2ff69aa56a1702a5a003070bec

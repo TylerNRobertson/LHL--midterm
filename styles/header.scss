@@ -1,0 +1,27 @@
+$abril: 'Abril Fatface', cursive;
+header {
+  background-image: url("../public/imgs/headbg.jpg");
+}
+#headInfo {
+  font-family: abril;
+  text-align: center;
+  p {
+    font-size: 25px;
+  }
+  i {
+    font-size: 22px;
+  }
+}
+#nav {
+  margin-bottom: 50px;
+  ul {
+    text-align: center;
+    padding-left: 0;
+    li {
+      list-style: none;
+      display: inline;
+      font-size: 20px;
+      padding: 20px;
+    }
+  }
+}

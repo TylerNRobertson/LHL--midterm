@@ -1,4 +1,5 @@
 exports.seed = function(knex, Promise) {
+<<<<<<< HEAD
       let rightNow = new Date().toISOString();
     return knex('food_items').del()
         .then(function() {
@@ -35,3 +36,14 @@ exports.seed = function(knex, Promise) {
             });
         });
 }
+=======
+  return knex('users').del()
+    .then(function () {
+      return Promise.all([
+        knex('users').insert({id: 1, name: 'Alice'}),
+        knex('users').insert({id: 2, name: 'Bob'}),
+        knex('users').insert({id: 3, name: 'Charlie'})
+      ]);
+    });
+};
+>>>>>>> 21c8482bf2667d2ff69aa56a1702a5a003070bec

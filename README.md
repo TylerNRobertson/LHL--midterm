@@ -1,29 +1,86 @@
-# Node Skeleton
+List of user Stories
 
-## Project Setup
+Nouns are in _italics_
+Verbs are in **bold**
 
-1. Create your own empty repo on GitHub
-2. Clone this repository (do not fork)
-  - Suggestion: When cloning, specify a different folder name that is relevant to your project
-3. Remove the git remote: `git remote rm origin`
-4. Add a remote for your origin: `git remote add origin <your github repo URL>`
-5. Push to the new origin: `git push -u origin master`
-6. Verify that the skeleton code now shows up in your repo on GitHub
+Some of these stories might be contradictory or too complicated.
 
-## Getting Started
+# Customer user stories
 
-1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
-2. Update the .env file with your correct local information
-3. Install dependencies: `npm i`
-4. Fix to binaries for sass: `npm rebuild node-sass`
-5. Run migrations: `npm run knex migrate:latest`
-  - Check the migrations folder to see what gets created in the DB
-6. Run the seed: `npm run knex seed:run`
-  - Check the seeds file to see what gets seeded in the DB
-7. Run the server: `npm run local`
-8. Visit `http://localhost:8080/`
+* As a _CUSTOMER_ I want to **VIEW** a _MENU_
+* As a _CUSTOMER_ I want to **SELECT** a _MENU_ by _CATEGORY_
+* As a _CUSTOMER_ I want to **SELECT** _FOOD_ from a _MENU_
+* As a _CUSTOMER_ I want to **ORDER** _FOOD_ from a _MENU_
 
-## Dependencies
+* As a _CUSTOMER_ I want to **MODIFY** my _ORDER_
+  + As a _CUSTOMER_ I want to **ADD** an _ORDER LINE_
+  + As a _CUSTOMER_ I want to **MODIFY** my _ORDER LINE_ _QUANTITY_
+  + As a _CUSTOMER_ I want to **MODIFY** my _ORDER LINE_ _FOOD_
+  + As a _CUSTOMER_ I want to **MODIFY** my _ORDER_ by adding _COUPON_
+  + As a _CUSTOMER_ I want to **CANCEL** my _ORDER LINE_
+  + As a _CUSTOMER_ I want to **PAY** my _ORDER_
 
-- Node 5.10.x or above
-- NPM 3.8.x or above
+* As a _CUSTOMER_ I want to **TRACK** my _ORDER_
+  + As a _CUSTOMER_ I want to **REMOVE** my _ORDER LINE_
+  + As a _CUSTOMER_ I want to **PLACE** an _ORDER_
+    - As a _CUSTOMER_ I want to **MODIFY** an _ORDER_ _CUSTOMER REQUEST_ to "PLACE"
+  + As a _CUSTOMER_ I want to **CANCEL** an _ORDER_
+    - As a _CUSTOMER_ I want to **MODIFY** an _ORDER_ _CUSTOMER REQUEST_ to "CANCEL"
+  + As a _CUSTOMER_ I want to **PAY** an _ORDER_
+
+* As a _CUSTOMER_ I want to **TRACK/VIEW** an _ORDER_
+* As a _CUSTOMER_ I want to **SEARCH** _FOOD_ by _PRICE_, _FOOD NAME_ and/or _FOOD TYPE_
+* As a _CUSTOMER_ I want to **SORT** a _MENU_ and _MENU ITEMS_ by _PRICE_
+* As a _CUSTOMER_ I want to **SORT** a _MENU_ and _MENU ITEMS_ by _PRICE_
+* As a _CUSTOMER_ I want to **SORT** a _MENU_ and _MENU ITEMS_ by _CATEGORY_
+
+# Vendor user stories
+
+
+* As a _VENDOR_ I want to **CREATE** a _MENU_
+* As a _VENDOR_ I want to **REMOVE** a _MENU_
+* As a _VENDOR_ I want to **MODIFY** a _MENU_
+  + As a _VENDOR_ I want to **ADD** a _CATEGORY_ on a _MENU_
+  + As a _VENDOR_ I want to **REMOVE** a _CATEGORY_ on a _MENU_
+
+* As a _VENDOR_ I want to **ADD** a _MENU ITEM LIST_ on a _MENU_
+* As a _VENDOR_ I want to **SORT/SELECT** a _MENU ITEM LIST_ on a _MENU_ by _FOOD_ "QTYORDERED"
+
+  + As a _VENDOR_ I want to **ADD** a _MENU ITEM_ on a _MENU_
+  + As a _VENDOR_ I want to **REMOVE** a _MENU ITEM_ on a _MENU_
+  + As a _VENDOR_ I want to **MODIFY** a _MENU ITEM_ on a _MENU_
+
+* As a _VENDOR_ I want to **CREATE** a _MENU ITEM_ on a _MENU_ from _FOOD_
+  + As a _VENDOR_ I want to **MODIFY** a _MENU ITEM_ _PRICE_
+  + As a _VENDOR_ I want to **MODIFY** a _MENU ITEM_ _QUANTITY_
+  + As a _VENDOR_ I want to **ADD** a _MENU ITEM_ _FOOD CATEGORY_
+
+* As a _VENDOR_ I want to **CREATE** a _FOOD_
+* As a _VENDOR_ I want to **REMOVE** a _FOOD_
+* As a _VENDOR_ I want to **MODIFY** a _FOOD_
+  + As a _VENDOR_ I want to **MODIFY** a _FOOD_ _PRICE_
+  + As a _VENDOR_ I want to **MODIFY** a _FOOD_ _NAME_
+  + As a _VENDOR_ I want to **MODIFY** a _FOOD_ _QUANTITY_
+  + As a _VENDOR_ I want to **MODIFY** a _FOOD_ _PREP TIME_
+  + As a _VENDOR_ I want to **MODIFY** a _FOOD_ _CATEGORY_
+
+
+* As a _VENDOR_ I want to **CREATE**  an _ORDER_
+
+
+  + As a _VENDOR_ I want to **MODIFY** an _ORDER_ _CLIENT_
+  + As a _VENDOR_ I want to **MODIFY** an _ORDER_ _PRICE_
+  + As a _VENDOR_ I want to **MODIFY** an _ORDER_ _OVERALL STATUS_
+    - As a _VENDOR_ I want to **CANCEL**  an _ORDER_
+    - As a _VENDOR_ I want to **MODIFY**  an _ORDER_
+  + As a _VENDOR_ I want to **MODIFY** an _ORDER_ _PREP STATUS_
+  + As a _VENDOR_ I want to **MODIFY** an _ORDER_ _PREP TIME_
+  + As a _VENDOR_ I want to **MODIFY** an _ORDER_ _DELIVERY STATUS_
+  + As a _VENDOR_ I want to **MODIFY** an _ORDER_ _DELIVERY TIME_
+  + As a _VENDOR_ I want to **MODIFY** an _ORDER_ _PAY STATUS_
+  + As a _VENDOR_ I want to **MODIFY** an _ORDER_ _PRIORITY_
+
+* As a _VENDOR_ I want to **VIEW**  an _ORDER_
+* As a _VENDOR_ I want to **VIEW** _ORDER ITEMS of an _ORDER_
+* As a _VENDOR_ I want to **SEARCH** for an _ORDER_ by _CUSTOMER_
+* As a _VENDOR_ I want to **SEARCH** for an _ORDER_ by _FOOD_
