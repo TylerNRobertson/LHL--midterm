@@ -1,4 +1,9 @@
 "use strict"
+
+// Router middleware for Order Object
+// Bernard Roach
+// Tyler Robertson
+//LHL midterm group project Oct 25
 const express = require('express');
 const router = express.Router();
 
@@ -35,12 +40,20 @@ module.exports = (DataHelpers) => {
 
     });
 
-// post a menu
+// post an order
   router.post("/", (req, res) => {
+       let rightNow = new Date().toISOString();
+console.log("order post route", req.body);
+console.log("now", rightNow)
+    DataHelpers.postOrder({  customerId: Number(req.body.o_customerId),
+                             placed: req.body.o_placed,
+                             canceled: req.body.o_canceled,
+                             ready: req.body.o_ready,
+                             complete: req.body.o_complete,
+                             date_time_created:rightNow,
+                             date_time_pickup: rightNow,
+                             date_time_completed: rightNow
 
-    DataHelpers.postOrder({  name: req.body.menuname,
-                            description: req.body.menudesc,
-                            category: req.body.menucat
                          },(err)=> {
       if (err) {
         res.status(500).json({ error: err.message });
@@ -51,12 +64,13 @@ module.exports = (DataHelpers) => {
 
   });
 
-// post a menu item
+// post an order item
   router.post("/item", (req, res) => {
 
-    DataHelpers.postOrderItem({  menuId: req.body.mi_menuID,
-                                foodId: req.body.mi_foodID,
-                                category: req.body.mi_cat
+    DataHelpers.postOrderItem({ foodItem_id: req.body.oi_foodItem_id,
+                                orderId: req.body.oi_orderId,
+                                price: req.body.oi_price,
+                                quantity: req.body.oi_quantity
                          },(err)=> {
       if (err) {
         res.status(500).json({ error: err.message });

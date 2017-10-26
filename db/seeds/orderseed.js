@@ -1,5 +1,5 @@
 exports.seed = function(knex, Promise) {
-<<<<<<< HEAD
+
       let rightNow = new Date().toISOString();
     return knex('customer').del()
         .then(function() {
@@ -37,7 +37,7 @@ exports.seed = function(knex, Promise) {
             });
         });
 }
-=======
+
   return knex('customer').del()
     .then(function () {
       let rightNow = new Date();
@@ -55,4 +55,4 @@ exports.seed = function(knex, Promise) {
       ]);
     });
 };
->>>>>>> 21c8482bf2667d2ff69aa56a1702a5a003070bec
+
