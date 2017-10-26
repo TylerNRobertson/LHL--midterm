@@ -39,12 +39,14 @@ $(() => {
     }
   });
 
+
   $.ajax({
     method: "GET",
     url: "/api/customers"
   }).done((customers) => {
-    for(customer of customer) {
-      $("<div>").text(customer.name).appendTo($("#orderitemtest"));
+    console.log("customer", customers);
+    for(customer of customers) {
+      $("<div>").text(customer.first_name).appendTo($("#customertest"));
     }
   });
 
