@@ -17,15 +17,14 @@ exports.seed = function(knex, Promise) {
                     id: 1,
                     name: 'That is a sharp looking menu',
                     category: 'Basically you are a genius',
-                    address: '222 Street funkytown',
                     description: 'impossible to describe, but think Salvador Dali playing Jai Lai moments before a strategic nuclear assault in a distopiann future where that kind of event does not even make the news'
                 }),
             ]).then(() => {
-              return knex('menu_item').del()
+              return knex('menu_items').del()
         .then(function() {
                 return Promise.all([
 
-                    knex('menu_item').insert({
+                    knex('menu_items').insert({
                         id: 1,
                         menuId: 1,
                         category: 'item category, but still a pretty category',
