@@ -24,6 +24,9 @@ const orderRoutes = require("./routes/order");
 // Customer object routes
 const customerRoutes = require("./routes/customer");
 
+// Food Object routes
+const foodRoutes = require("./routes/food")
+
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -55,8 +58,11 @@ app.use("/api/menus", menuRoutes(DataHelpers));
 // Mount order routes
 app.use("/api/orders", orderRoutes(DataHelpers));
 
-// Mount order routes
+// Mount customer routes
 app.use("/api/customers", customerRoutes(DataHelpers));
+
+// Mount food routes
+app.use("/api/food", foodRoutes(DataHelpers));
 
 // Home page
 app.get("/", (req, res) => {

@@ -44,9 +44,19 @@ $(() => {
     method: "GET",
     url: "/api/customers"
   }).done((customers) => {
-    console.log("customer", customers);
+
     for(customer of customers) {
       $("<div>").text(customer.first_name).appendTo($("#customertest"));
+    }
+  });
+
+  $.ajax({
+    method: "GET",
+    url: "/api/food"
+  }).done((food) => {
+    console.log("food", food);
+    for(foodItem of food) {
+      $("<div>").text(foodItem.name).appendTo($("#fooditemtest"));
     }
   });
 
