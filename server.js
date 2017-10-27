@@ -73,6 +73,11 @@ app.get("/", (req, res) => {
   res.render("landing");
 });
 
+// Home page
+app.get("/data", (req, res) => {
+  res.render("index_bernie_test");
+});
+
 //User Create Order page
 app.get("/create", (req, res) => {
   res.render("index");
