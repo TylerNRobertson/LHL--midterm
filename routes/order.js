@@ -33,7 +33,7 @@ module.exports = (DataHelpers) => {
                     error: err.message
                 });
             } else {
-                console.log(orders);
+
                 res.json(orders);
             }
         });
@@ -43,8 +43,7 @@ module.exports = (DataHelpers) => {
 // post an order
   router.post("/", (req, res) => {
        let rightNow = new Date().toISOString();
-console.log("order post route", req.body);
-console.log("now", rightNow)
+
     DataHelpers.postOrder({  customerId: Number(req.body.o_customerId),
                              placed: req.body.o_placed,
                              canceled: req.body.o_canceled,
