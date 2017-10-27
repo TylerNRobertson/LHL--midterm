@@ -20,7 +20,6 @@ module.exports = (DataHelpers) => {
         if (err) {
         res.status(500).json({ error: err.message });
       } else {
-        console.log(menus);
         res.json(menus);
       }
     });
@@ -63,14 +62,22 @@ module.exports = (DataHelpers) => {
 
 
 // update a menu item
-  router.update("/:id", (req, res) => {
+  router.put("/:id", (req, res) => {
 
 
   });
 
   // delete a menu item
   router.delete("/:id", (req, res) => {
-
+   console.log("delete menu");
+   console.log(req.params.id);
+   DataHelpers.deleteMenu(req.params.id,(err)=> {
+      if (err) {
+        res.status(500).json({ error: err.message });
+      } else {
+        res.status(201).redirect('/');
+      }
+    });
 
   });
 

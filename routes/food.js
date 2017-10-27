@@ -7,12 +7,12 @@ module.exports = (DataHelpers) => {
 
 // get food items
     router.get("/", (req, res) => {
-      console.log("food item route found");
+
     DataHelpers.getFoodItems({all: true}, (err, foodItems)=> {
         if (err) {
         res.status(500).json({ error: err.message });
       } else {
-        console.log("food items",foodItems);
+
         res.json(foodItems);
       }
     });
@@ -41,7 +41,7 @@ module.exports = (DataHelpers) => {
   });
 
 // update a food item
-  router.update("/:id", (req, res) => {
+  router.put("/:id", (req, res) => {
 
 
   });

@@ -81,7 +81,7 @@ module.exports = (DataHelpers) => {
   });
 
 // update a order item
-  router.update("/:id", (req, res) => {
+  router.put("/:id", (req, res) => {
 
 
   });

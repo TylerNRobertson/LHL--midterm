@@ -36,7 +36,7 @@ module.exports = (DataHelpers) => {
   });
 
 // update a customer
-  router.update("/:id", (req, res) => {
+  router.put("/:id", (req, res) => {
 
 
   });

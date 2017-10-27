@@ -8,7 +8,12 @@ $(() => {
   }).done((menus) => {
     console.log("got menus");
     for(menu of menus) {
-      $("<div>").text(menu.name).appendTo($("#menutest"));
+      let $div = $("<div>").text(menu.name).appendTo($("#menutest"));
+      let $form = $("<form>")
+        .attr("action",`/api/menus/${menu.id}?_POSTOverride=DELETE`)
+        .attr("method","POST")
+        .html(`<input type="submit" value="Delete${menu.id}">`)
+        .appendTo($div);
     }
   });
 
