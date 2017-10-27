@@ -16,6 +16,13 @@ const knexLogger  = require('knex-logger');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
+
+// Menu object routes
+const menuRoutes = require("./routes/menu");
+// Menu object routes
+const orderRoutes = require("./routes/order");
+
+
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -32,14 +39,33 @@ app.use("/styles", sass({
   debug: true,
   outputStyle: 'expanded'
 }));
-app.use(express.static("public"));
+app.use('/public', express.static(__dirname + "/public"));
 
-// Mount all resource routes
+// Mount user routes
 app.use("/api/users", usersRoutes(knex));
+
+// Get Datahelpers
+const DataHelpers = require("./lib/data-helpers.js")(knex);
+
+// Mount menu routes
+app.use("/api/menus", menuRoutes(DataHelpers));
+
+// Mount order routes
+app.use("/api/orders", orderRoutes(DataHelpers));
 
 // Home page
 app.get("/", (req, res) => {
+  res.render("landing");
+});
+
+// User Create Order page
+app.get("/create", (req, res) => {
   res.render("index");
+});
+
+// Vendor page
+app.get("/vendor", (req, res) => {
+  res.render("./vendor_pages/vendormain");
 });
 
 app.listen(PORT, () => {

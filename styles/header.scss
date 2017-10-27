@@ -1,27 +1,26 @@
 $abril: 'Abril Fatface', cursive;
-header {
-  background-image: url("../public/imgs/headbg.jpg");
+#header {
+  background-image: url("/visuals/images/headbg.jpg");
+  height: 300px;
+  margin-bottom: 5px;
+  border-bottom: solid black 10px;
+}
+button.cartbtn {
+  background: transparent;
+  border-color: transparent;
+  font-size: 20px;
+  margin-left: 1250px;
+  color: white;
 }
 #headInfo {
   font-family: abril;
   text-align: center;
+  color: white;
+  padding-top: 40px;
   p {
     font-size: 25px;
   }
   i {
     font-size: 22px;
-  }
-}
-#nav {
-  margin-bottom: 50px;
-  ul {
-    text-align: center;
-    padding-left: 0;
-    li {
-      list-style: none;
-      display: inline;
-      font-size: 20px;
-      padding: 20px;
-    }
   }
 }

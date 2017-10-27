@@ -3,48 +3,74 @@
   <head>
     <title>Home Page</title>
 
+    <!-- CSS/Vendor CSS cdn's -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/user/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/buttons.css" type="text/css" />
+    <link href="/styles/header.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/user/order.css" rel="stylesheet" type="text/css" />
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <!-- CDNS (bootstrap,jquery,fontaweseom) -->
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+    <!--  Vendor Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
 
   <body>
     <header>
       <% include ./partials/header.ejs %>
+      <% include ./partials/user/myorder.ejs %>
+        <nav id="nav">
+          <ul>
+            <li id="breakfast"><a href="">Breakfast</a></li>
+            <li id="lunch"><a href="">Lunch</a></li>
+            <li id="dinner"><a href="">Dinner</a></li>
+          </ul>
+        </nav>
     </header>
     <section id="menu_items">
+      <h1 class="menuname">Breakfast Menu</h1>
+      <p class="description">The wheel rattles beside the cinema! A confused crop spits the flown class.<br /> The medium taxpayer flashes. On top of the pedantry appears an underlying censorship.</p>
+      <!-- This include is what shows the item pop up -->
+      <% include ./partials/user/menuitem.ejs %>
       <div class="row">
         <div class="card">
           <img src="http://via.placeholder.com/275x150">
           <div class="card_body">
-            <p>Menu Item description</p>
-            <p class="info">- Item Category</p>
-            <p class="info">- Dietary info</p>
+            <p>Hamburger and Fries</p>
+            <p class="info">- Lunch/Dinner</p>
+            <p class="info">- Includes a medium drink</p>
+            <p class="desc">House made bun, lettuce, tomato, onions, ketchup, mustard, pickles and bacon.</p>
             <p class="info">Price: $10.99</p>
-            <button>Add to Order</button>
+            <button type="button" class="custombtn" data-toggle="modal" data-target="#itempopup"><i class="fa fa-plus-circle" aria-hidden="true"></i>  Order</button>
           </div>
         </div>
         <div class="card">
           <img src="http://via.placeholder.com/275x150">
           <div class="card_body">
-            <p>Menu Item description</p>
-            <p class="info">- Item Category</p>
-            <p class="info">- Dietary info</p>
+            <p>Hamburger and Fries</p>
+            <p class="info">- Lunch/Dinner</p>
+            <p class="info">- Includes a medium drink</p>
+            <p class="desc">House made bun, lettuce, tomato, onions, ketchup, mustard, pickles and bacon.</p>
             <p class="info">Price: $10.99</p>
-            <button>Add to Order</button>
+            <button type="button" class="custombtn" data-toggle="modal" data-target="#itempopup"><i class="fa fa-plus-circle" aria-hidden="true"></i>  Order</button>
           </div>
         </div>
         <div class="card">
           <img src="http://via.placeholder.com/275x150">
           <div class="card_body">
-            <p>Menu Item description</p>
-            <p class="info">- Item Category</p>
-            <p class="info">- Dietary info</p>
+            <p>Hamburger and Fries</p>
+            <p class="info">- Lunch/Dinner</p>
+            <p class="info">- Includes a medium drink</p>
+            <p class="desc">House made bun, lettuce, tomato, onions, ketchup, mustard, pickles and bacon.</p>
             <p class="info">Price: $10.99</p>
-            <button>Add to Order</button>
+            <button type="button" class="custombtn" data-toggle="modal" data-target="#itempopup"><i class="fa fa-plus-circle" aria-hidden="true"></i>  Order</button>
           </div>
         </div>
       </div>

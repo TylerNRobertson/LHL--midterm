@@ -1,1 +1,23 @@
+$headFont: 'Lobster', cursive;
+$sloganFont: 'Katibeh', cursive;
+.bg {
+  background-image: url("/visuals/images/headbg.jpg");
+  height: 100%;
+}
+div.mainhead {
+  text-align: center;
+  margin-top: 15%;
+  color: white;
 
+    h1 {
+      font-size: 60px;
+      font-family: $headFont;
+    }
+    h3 {
+      font-family: $sloganFont;
+      font-size: 30px;
+    }
+}
+div.userAction {
+  text-align: center;
+}
