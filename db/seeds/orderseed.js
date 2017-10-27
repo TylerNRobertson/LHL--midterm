@@ -1,5 +1,4 @@
 exports.seed = function(knex, Promise) {
-
       let rightNow = new Date().toISOString();
     return knex('customer').del()
         .then(function() {
@@ -55,4 +54,3 @@ exports.seed = function(knex, Promise) {
       ]);
     });
 };
-
