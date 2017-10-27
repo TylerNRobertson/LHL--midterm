@@ -6,6 +6,7 @@ $(() => {
     method: "GET",
     url: "/api/menus"
   }).done((menus) => {
+    console.log("got menus");
     for(menu of menus) {
       $("<div>").text(menu.name).appendTo($("#menutest"));
     }
@@ -29,7 +30,7 @@ $(() => {
       $("<div>").text(order.id).appendTo($("#ordertest"));
     }
   });
-
+// order item test
   $.ajax({
     method: "GET",
     url: "/api/orders/items"
@@ -39,7 +40,7 @@ $(() => {
     }
   });
 
-
+// customer test
   $.ajax({
     method: "GET",
     url: "/api/customers"
@@ -50,6 +51,7 @@ $(() => {
     }
   });
 
+// food test
   $.ajax({
     method: "GET",
     url: "/api/food"

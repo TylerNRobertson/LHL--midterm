@@ -44,7 +44,7 @@ app.use("/styles", sass({
   debug: true,
   outputStyle: 'expanded'
 }));
-app.use('/public', express.static(__dirname + "/public"));
+app.use(express.static("public"));
 
 // Mount user routes
 app.use("/api/users", usersRoutes(knex));
@@ -66,10 +66,10 @@ app.use("/api/food", foodRoutes(DataHelpers));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("landing");
+  res.render("index_bernie_test");
 });
 
-// User Create Order page
+User Create Order page
 app.get("/create", (req, res) => {
   res.render("index");
 });
