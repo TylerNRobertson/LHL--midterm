@@ -80,5 +80,17 @@ module.exports = (DataHelpers) => {
 
   });
 
+// update a order item
+  router.update("/:id", (req, res) => {
+
+
+  });
+
+  // delete a order item
+  router.delete("/:id", (req, res) => {
+
+
+  });
+
     return router;
 }

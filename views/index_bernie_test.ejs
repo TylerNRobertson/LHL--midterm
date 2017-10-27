@@ -64,17 +64,25 @@
           <label><input type="submit" value="Make Order">
 
         </form>
-      <section id="postorderitemtest"> <h4> orderitem test </h4>  </section>
+      <section id="postorderitemtest"> <h4> orderitem test </h4>
         <form action="/api/orders/item" method="POST">
           <input type=number name="oi_orderId"  placeholder="oi_orderId">
           <input type=number name="oi_foodItem_id" placeholder="oi_foodItem_id">
           <input type=number name="oi_quantity"  placeholder="oi_quantity">
           <input type=number step="0.01" name="oi_price"  placeholder="oi_price">
-
           <input type="submit" value="Make Order Item">
-
         </form>
-       <section id="postcustomertest"> <h4> customer test </h4>  </section>
+      </section>
+       <section id="postcustomertest"> <h4> customer test </h4>
+          <form action="/api/customers" method="POST">
+            <textarea name="c_first_name"  placeholder="c_first_name"></textarea>
+            <textarea name="c_last_name"  placeholder="c_last_name"></textarea>
+            <textarea name="c_address"  placeholder="c_address"></textarea>
+            <textarea name="c_phone"  placeholder="c_phone"></textarea>
+            <textarea name="c_email"  placeholder="c_email"></textarea>
+            <input type="submit" value="Make customer">
+          </form>
+        </section>
        <section id="postfooditemtest"> <h4> food item test </h4>
         <form action="/api/food" method="POST">
           <textarea name="fi_name"  placeholder="fi_name"></textarea>
@@ -87,6 +95,7 @@
           <textarea name="fi_description"  placeholder="fi_description"></textarea>
 
           <input type="submit" value="Make Food Item">
+        </form>
        </section>
     </section>
 

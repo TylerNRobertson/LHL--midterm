@@ -62,5 +62,17 @@ module.exports = (DataHelpers) => {
   });
 
 
+// update a menu item
+  router.update("/:id", (req, res) => {
+
+
+  });
+
+  // delete a menu item
+  router.delete("/:id", (req, res) => {
+
+
+  });
+
   return router;
 }

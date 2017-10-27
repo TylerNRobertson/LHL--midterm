@@ -40,6 +40,18 @@ module.exports = (DataHelpers) => {
 
   });
 
+// update a food item
+  router.update("/:id", (req, res) => {
+
+
+  });
+
+  // delete a food item
+  router.delete("/:id", (req, res) => {
+
+
+  });
+
   return router;
 
 };
