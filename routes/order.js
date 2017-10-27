@@ -80,16 +80,35 @@ module.exports = (DataHelpers) => {
 
   });
 
-// update a order item
+  router.put("/items/:id", (req, res) => {
+  console.log("/items/:id");
+          DataHelpers.updateOrderItem(JSON.parse(req.body.oi_json), (err) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.status(201).redirect('/');
+            }
+        });
+    });
+
   router.put("/:id", (req, res) => {
 
-
-  });
+          DataHelpers.updateOrder(JSON.parse(req.body.o_json), (err) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.status(201).redirect('/');
+            }
+        });
+    });
 
     // delete a order
     router.delete("/:id", (req, res) => {
-        console.log("delete order");
-        console.log(req.params.id);
+
         DataHelpers.deleteOrder(req.params.id, (err) => {
             if (err) {
                 res.status(500).json({
@@ -104,7 +123,7 @@ module.exports = (DataHelpers) => {
 
     // delete a order item
     router.delete("/items/:id", (req, res) => {
-        console.log("delete order item");
+
         DataHelpers.deleteOrderItem(req.params.id, (err) => {
             if (err) {
                 res.status(500).json({

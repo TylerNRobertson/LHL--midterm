@@ -49,11 +49,18 @@ module.exports = (DataHelpers) => {
 
 // update a customer
   router.put("/:id", (req, res) => {
+        DataHelpers.updateCustomer(JSON.parse(req.body.c_json), (err) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.status(201).redirect('/');
+            }
+        });
+    });
 
-
-  });
-
-    // delete a customer
+// delete a customer
     router.delete("/:id", (req, res) => {
         console.log("delete food item");
         console.log(req.params.id);

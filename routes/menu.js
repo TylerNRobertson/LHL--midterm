@@ -124,11 +124,32 @@ module.exports = (DataHelpers) => {
 
 
     // update a menu item
-    router.put("/:id", (req, res) => {
 
+  router.put("/items/:id", (req, res) => {
 
+          DataHelpers.updateMenuItem(JSON.parse(req.body.mi_json), (err) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.status(201).redirect('/');
+            }
+        });
     });
 
+  router.put("/:id", (req, res) => {
+
+          DataHelpers.updateMenu(JSON.parse(req.body.m_json), (err) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.status(201).redirect('/');
+            }
+        });
+    });
 
     // delete a menu item
     router.delete("/:id", (req, res) => {
@@ -145,6 +166,8 @@ module.exports = (DataHelpers) => {
         });
 
     });
+
+
 
     // delete a menu item
     router.delete("/items/:id", (req, res) => {

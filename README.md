@@ -3,9 +3,7 @@ https://docs.google.com/spreadsheets/d/1tdfC2ywA8dXkJvKh55d5tS1ZJUAGKIOQ6y8Etg3T
 
 Bernie to do for friday
 
-figure out the api routes
-
-all the updates
+figure out the api routes OK
 
 item gets for Menu/Order
 (put a button go to id)
@@ -16,6 +14,8 @@ Menu
 MItem
 FoodItem
 Customer
+
+all the updates
 
 make the update forms - then make them the get html
 
