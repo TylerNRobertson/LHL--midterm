@@ -22,7 +22,12 @@ $(() => {
     url: "/api/menus/items"
   }).done((menuItems) => {
     for(item of menuItems) {
-      $("<div>").text(item.id).appendTo($("#menuitemtest"));
+      let $div = $("<div>").text(item.id).appendTo($("#menuitemtest"));
+      let $form = $("<form>")
+        .attr("action",`/api/menus/items/${item.id}?_POSTOverride=DELETE`)
+        .attr("method","POST")
+        .html(`<input type="submit" value="Delete${item.id}">`)
+        .appendTo($div);
     }
   });
 

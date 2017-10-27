@@ -45,7 +45,7 @@ module.exports = (DataHelpers) => {
   });
 
 // post a menu item
-  router.post("/item", (req, res) => {
+  router.post("/items", (req, res) => {
 
     DataHelpers.postMenuItem({  menuId: req.body.mi_menuID,
                                 foodId: req.body.mi_foodID,
@@ -67,6 +67,7 @@ module.exports = (DataHelpers) => {
 
   });
 
+
   // delete a menu item
   router.delete("/:id", (req, res) => {
    console.log("delete menu");
@@ -81,5 +82,18 @@ module.exports = (DataHelpers) => {
 
   });
 
+    // delete a menu item
+  router.delete("/items/:id", (req, res) => {
+   console.log("delete menu item");
+   console.log(req.params.id);
+   DataHelpers.deleteMenuItem(req.params.id,(err)=> {
+      if (err) {
+        res.status(500).json({ error: err.message });
+      } else {
+        res.status(201).redirect('/');
+      }
+    });
+
+  });
   return router;
 }
