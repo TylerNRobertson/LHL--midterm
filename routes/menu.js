@@ -1,66 +1,145 @@
 "use strict"
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (DataHelpers) => {
 
     router.get("/items/", (req, res) => {
-    DataHelpers.getMenuItems({all: true}, (err, menuItems)=> {
-        if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-        res.json(menuItems);
-      }
+        DataHelpers.getMenuItems({
+            all: true
+        }, (err, menuItems) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.json(menuItems);
+            }
+        });
+      });
+
+
+    router.get("/", (req, res) => {
+        DataHelpers.getMenus({
+            all: true
+        }, (err, menus) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.json(menus);
+            }
+        });
+
+      });
+
+    router.get("/:id", (req, res) => {
+        DataHelpers.getMenus({
+            all: false , id: req.params.id
+        }, (err, menus) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.json(menus);
+            }
+        });
+
     });
 
-  });
 
-  router.get("/", (req, res) => {
-    DataHelpers.getMenus({all: true}, (err, menus)=> {
-        if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-        console.log(menus);
-        res.json(menus);
-      }
+    router.get("/:menuId/items/:id", (req, res) => {
+        DataHelpers.getMenuItems({
+            all: false, id: req.params.id , menudId: req.params.menudId
+        }, (err, menuItems) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.json(menuItems);
+            }
+        });
     });
 
-  });
 
+    // post a menu
+    router.post("/", (req, res) => {
 
+        DataHelpers.postMenu({
+            name: req.body.menuname,
+            description: req.body.menudesc,
+            category: req.body.menucat
+        }, (err) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.status(201).redirect('/');
+            }
+        });
 
-// post a menu
-  router.post("/", (req, res) => {
-
-    DataHelpers.postMenu({  name: req.body.menuname,
-                            description: req.body.menudesc,
-                            category: req.body.menucat
-                         },(err)=> {
-      if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-        res.status(201).redirect('/');
-      }
     });
 
-  });
+    // post a menu item
+    router.post("/items", (req, res) => {
 
-// post a menu item
-  router.post("/item", (req, res) => {
+        DataHelpers.postMenuItem({
+            menuId: req.body.mi_menuID,
+            foodId: req.body.mi_foodID,
+            category: req.body.mi_cat
+        }, (err) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.status(201).redirect('/');
+            }
+        });
 
-    DataHelpers.postMenuItem({  menuId: req.body.mi_menuID,
-                                foodId: req.body.mi_foodID,
-                                category: req.body.mi_cat
-                         },(err)=> {
-      if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-        res.status(201).redirect('/');
-      }
     });
 
-  });
+
+    // update a menu item
+    router.put("/:id", (req, res) => {
 
 
-  return router;
+    });
+
+
+    // delete a menu item
+    router.delete("/:id", (req, res) => {
+        console.log("delete menu");
+        console.log(req.params.id);
+        DataHelpers.deleteMenu(req.params.id, (err) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.status(201).redirect('/');
+            }
+        });
+
+    });
+
+    // delete a menu item
+    router.delete("/items/:id", (req, res) => {
+        console.log("delete menu item");
+        DataHelpers.deleteMenuItem(req.params.id, (err) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.status(201).redirect('/');
+            }
+        });
+
+    });
+    return router;
 }

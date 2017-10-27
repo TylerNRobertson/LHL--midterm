@@ -3,9 +3,7 @@
   <head>
     <title>Home Page</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app_test_get.js"></script>
@@ -14,7 +12,7 @@
   <body>
 
     <header>
-      <% include ./partials/header.ejs %>
+
     </header>
     <section id="gettest">
       <h1> GET TESTS </h1>
@@ -42,7 +40,7 @@
 
         </form>
       <section id="postmenuitemtest"> <h4> menu item test </h4> </section>
-        <form action="/api/menus/item" method="POST">
+        <form action="/api/menus/items" method="POST">
           <input type=number name="mi_menuID"  placeholder="menuID">
           <input type=number name="mi_foodID" placeholder="foodID">
           <textarea name="mi_cat"  placeholder="category"></textarea>
@@ -66,18 +64,39 @@
           <label><input type="submit" value="Make Order">
 
         </form>
-      <section id="postorderitemtest"> <h4> orderitem test </h4>  </section>
+      <section id="postorderitemtest"> <h4> orderitem test </h4>
         <form action="/api/orders/item" method="POST">
           <input type=number name="oi_orderId"  placeholder="oi_orderId">
           <input type=number name="oi_foodItem_id" placeholder="oi_foodItem_id">
           <input type=number name="oi_quantity"  placeholder="oi_quantity">
           <input type=number step="0.01" name="oi_price"  placeholder="oi_price">
-
           <input type="submit" value="Make Order Item">
-
         </form>
-       <section id="postcustomertest"> <h4> customer test </h4>  </section>
-       <section id="postfooditemtest"> <h4> food item test </h4>  </section>
+      </section>
+       <section id="postcustomertest"> <h4> customer test </h4>
+          <form action="/api/customers" method="POST">
+            <textarea name="c_first_name"  placeholder="c_first_name"></textarea>
+            <textarea name="c_last_name"  placeholder="c_last_name"></textarea>
+            <textarea name="c_address"  placeholder="c_address"></textarea>
+            <textarea name="c_phone"  placeholder="c_phone"></textarea>
+            <textarea name="c_email"  placeholder="c_email"></textarea>
+            <input type="submit" value="Make customer">
+          </form>
+        </section>
+       <section id="postfooditemtest"> <h4> food item test </h4>
+        <form action="/api/food" method="POST">
+          <textarea name="fi_name"  placeholder="fi_name"></textarea>
+          <textarea name="fi_category"  placeholder="fi_category"></textarea>
+          <textarea name="fi_type"  placeholder="fi_type"></textarea>
+          <input type=number name="fi_prep_time_min"  placeholder="fi_prep_time_min">
+          <input type=number name="fi_pop_index" placeholder="fi_pop_index">
+          <input type=number name="fi_quantity"  placeholder="fi_quantity">
+          <input type=number step="0.01" name="fi_price"  placeholder="fi_price">
+          <textarea name="fi_description"  placeholder="fi_description"></textarea>
+
+          <input type="submit" value="Make Food Item">
+        </form>
+       </section>
     </section>
 
   </body>

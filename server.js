@@ -4,7 +4,9 @@ require('dotenv').config();
 
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
+
 const express     = require("express");
+const methodOverride = require('method-override');
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
@@ -37,6 +39,8 @@ app.use(morgan('dev'));
 app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
+// override with POST having ?_POSTOverride=PUT/DELETE method=POST
+app.use(methodOverride('_POSTOverride'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
   src: __dirname + "/styles",
@@ -66,10 +70,10 @@ app.use("/api/food", foodRoutes(DataHelpers));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("landing");
+  res.render("index_bernie_test");
 });
 
-// User Create Order page
+//User Create Order page
 app.get("/create", (req, res) => {
   res.render("index");
 });
