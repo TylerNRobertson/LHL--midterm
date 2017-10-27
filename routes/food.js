@@ -8,7 +8,21 @@ module.exports = (DataHelpers) => {
 // get food items
     router.get("/", (req, res) => {
 
-    DataHelpers.getFoodItems({all: true}, (err, foodItems)=> {
+    DataHelpers.getFoodItems(null, (err, foodItems)=> {
+        if (err) {
+        res.status(500).json({ error: err.message });
+      } else {
+
+        res.json(foodItems);
+      }
+    });
+
+  });
+
+    // get a food item
+    router.get("/:id", (req, res) => {
+
+    DataHelpers.getFoodItems(req.params.id, (err, foodItems)=> {
         if (err) {
         res.status(500).json({ error: err.message });
       } else {

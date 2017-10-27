@@ -4,10 +4,10 @@ const router = express.Router();
 
 module.exports = (DataHelpers) => {
 
+// get all items
     router.get("/items/", (req, res) => {
-        DataHelpers.getMenuItems({
-            all: true
-        }, (err, menuItems) => {
+      console.log("/items");
+        DataHelpers.getMenuItems( null, (err, menuItems) => {
             if (err) {
                 res.status(500).json({
                     error: err.message
@@ -18,8 +18,9 @@ module.exports = (DataHelpers) => {
         });
       });
 
-
+// get all menus
     router.get("/", (req, res) => {
+      console.log("/");
         DataHelpers.getMenus({
             all: true
         }, (err, menus) => {
@@ -34,7 +35,41 @@ module.exports = (DataHelpers) => {
 
       });
 
+// get a single item
+    router.get("/items/:id", (req, res) => {
+      console.log("items/:id");
+        DataHelpers.getMenuItem(req.params.id
+        , (err, menuItem) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.json(menuItem);
+            }
+        });
+    });
+
+
+
+// get item for a menu
+    router.get("/:id/items/", (req, res) => {
+      console.log("/:id/items/");
+        DataHelpers.getMenuItems(req.params.id
+        , (err, menuItems) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.json(menuItems);
+            }
+        });
+    });
+
+
     router.get("/:id", (req, res) => {
+      console.log("/:id");
         DataHelpers.getMenus({
             all: false , id: req.params.id
         }, (err, menus) => {
@@ -48,22 +83,6 @@ module.exports = (DataHelpers) => {
         });
 
     });
-
-
-    router.get("/:menuId/items/:id", (req, res) => {
-        DataHelpers.getMenuItems({
-            all: false, id: req.params.id , menudId: req.params.menudId
-        }, (err, menuItems) => {
-            if (err) {
-                res.status(500).json({
-                    error: err.message
-                });
-            } else {
-                res.json(menuItems);
-            }
-        });
-    });
-
 
     // post a menu
     router.post("/", (req, res) => {
