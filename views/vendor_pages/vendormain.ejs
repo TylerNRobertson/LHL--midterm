@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- CSS/Vendor CSS cdn's -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/buttons.css" type="text/css" />
+  <link href="/styles/header.css" rel="stylesheet" type="text/css" />
+  <link href="/styles/vendor/vendorlayout.css" rel="stylesheet" type="text/css" />
+
+  <!-- CDNS (bootstrap,jquery,fontaweseom) -->
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+  <!--  Vendor Scripts -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 
 </head>
 <header>
-  <% include ../partials/header %>
-  <nav>
+  <% include ../partials/vendor/vendorheader %>
+  <% include ../partials/vendor/addmenu.ejs %>
+  <% include ../partials/vendor/yourmenus.ejs %>
+  <nav id="nav">
     <ul>
-      <li><a href="">Create Menu</a></li>
-      <li><a href="">Modify a Menu</a></li>
-      <li><a href="">Delete a Menu</a></li>
+      <li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createmenupopup"><i class="fa fa-plus" aria-hidden="true"></i> Create a menu</button></li>
+      <li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#yourmenuspopup"><i class="fa fa-plus" aria-hidden="true"></i> Edit my Menu's</button></li>
       <li><a href="">Your order(s) History</a></li>
 </header>
 <body>

@@ -18,7 +18,7 @@
             <h5>Burger and Fries</h5>
             <p>House made bun, lettuce, tomato, onions, ketchup, mustard, pickles and bacon.</p>
             <p>Price: $10.99</p>
-            <form type="text" name="QTY:">QTY:</form>
+            <form>QTY:  <input type="text" name="quantity" value="1" style="width: 30px;"></form>
           </div>
         </section>
         <section class="orderListItems">
@@ -30,7 +30,7 @@
             <h5>Burger and Fries</h5>
             <p>House made bun, lettuce, tomato, onions, ketchup, mustard, pickles and bacon.</p>
             <p>Price: $10.99</p>
-            <form type="input">QTY:</form>
+            <form>QTY:  <input type="text" name="quantity" value="1" style="width: 30px;"></form>
           </div>
         </section>
       </div>
@@ -40,7 +40,12 @@
           <h5>Tax: $1.50</h5>
           <h5>Total Price: $10.99</h5>
         </div>
-        <button type="button" class="btn btn-primary">Confirm My Order</button>
+         <form class="coupon">
+         Coupon Code:<input type="text" name="firstname">
+         <input type="submit" class="btn btn-primary" value="Activate">
+        </form>
+        <button type="button" class="btn btn-primary prog" data-toggle="modal" data-dismiss="modal" data-target="#progresspopup"><i class="fa fa-spinner" aria-hidden="true"></i> My Order Progress</button>
+        <button type="button" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Confirm My Order</button>
       </div>
     </div>
   </div>

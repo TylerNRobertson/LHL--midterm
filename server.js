@@ -44,7 +44,7 @@ app.use("/styles", sass({
   debug: true,
   outputStyle: 'expanded'
 }));
-app.use('/public', express.static(__dirname + "/public"));
+app.use(express.static('public'))
 
 // Mount user routes
 app.use("/api/users", usersRoutes(knex));
