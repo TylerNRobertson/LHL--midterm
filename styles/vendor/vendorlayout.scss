@@ -11,3 +11,28 @@
     }
   }
 }
+.order {
+  border-top: solid #bdbec1 2px;
+  border-bottom: solid #bdbec1 2px;
+  width: 100%;
+}
+div .menuedititem {
+  border-top: solid #bdbec1 2px;
+  border-bottom: solid #bdbec1 2px;
+  width: 100%;
+  margin-bottom: 5px;
+  h5 {
+    text-decoration: underline;
+  }
+  img {
+    float: left;
+    padding-top: 5px;
+    padding-right: 10px;
+  }
+  button .remove {
+    margin-bottom: 100px;
+  }
+}
+form .addfood {
+  text-align: left;
+}

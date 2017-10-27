@@ -70,7 +70,7 @@ app.use("/api/food", foodRoutes(DataHelpers));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index_bernie_test");
+  res.render("landing");
 });
 
 //User Create Order page
