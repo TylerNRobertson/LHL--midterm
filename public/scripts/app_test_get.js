@@ -42,6 +42,7 @@ $(() => {
         .attr("action",`/api/orders/${order.id}?_POSTOverride=DELETE`)
         .attr("method","POST")
         .html(`<input type="submit" value="Delete${order.id}">`)
+        .html(`<h1> just testing the html jquery thing</h1>`)
         .appendTo($div);
     }
   });

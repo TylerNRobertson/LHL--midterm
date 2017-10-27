@@ -1,6 +1,30 @@
 DATABASE schema definitions are here:
 https://docs.google.com/spreadsheets/d/1tdfC2ywA8dXkJvKh55d5tS1ZJUAGKIOQ6y8Etg3Tjmw/edit#gid=2007291170
 
+Bernie to do for friday
+all the updates
+
+item gets for Menu/Order
+(put a button go to id)
+
+Order
+OItem
+Menu
+MItem
+FoodItem
+Customer
+
+make the update forms - then make them the get html
+
+Order
+OItem
+Menu
+MItem
+FoodItem
+Customer
+
+
+
 List of user Stories
 
 Nouns are in _italics_

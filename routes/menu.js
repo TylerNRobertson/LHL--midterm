@@ -16,8 +16,8 @@ module.exports = (DataHelpers) => {
                 res.json(menuItems);
             }
         });
+      });
 
-    });
 
     router.get("/", (req, res) => {
         DataHelpers.getMenus({
@@ -32,8 +32,37 @@ module.exports = (DataHelpers) => {
             }
         });
 
+      });
+
+    router.get("/:id", (req, res) => {
+        DataHelpers.getMenus({
+            all: false , id: req.params.id
+        }, (err, menus) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.json(menus);
+            }
+        });
+
     });
 
+
+    router.get("/:menuId/items/:id", (req, res) => {
+        DataHelpers.getMenuItems({
+            all: false, id: req.params.id , menudId: req.params.menudId
+        }, (err, menuItems) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.json(menuItems);
+            }
+        });
+    });
 
 
     // post a menu
@@ -101,7 +130,6 @@ module.exports = (DataHelpers) => {
     // delete a menu item
     router.delete("/items/:id", (req, res) => {
         console.log("delete menu item");
-        console.log(req.params.id);
         DataHelpers.deleteMenuItem(req.params.id, (err) => {
             if (err) {
                 res.status(500).json({
