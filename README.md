@@ -2,6 +2,9 @@ DATABASE schema definitions are here:
 https://docs.google.com/spreadsheets/d/1tdfC2ywA8dXkJvKh55d5tS1ZJUAGKIOQ6y8Etg3Tjmw/edit#gid=2007291170
 
 Bernie to do for friday
+
+figure out the api routes
+
 all the updates
 
 item gets for Menu/Order
@@ -23,6 +26,9 @@ MItem
 FoodItem
 Customer
 
+after all of the above is done.
+
+start the routing for the test webpages and loader
 
 
 List of user Stories

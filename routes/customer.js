@@ -6,7 +6,19 @@ module.exports = (DataHelpers) => {
 
   router.get("/", (req, res) => {
 
-    DataHelpers.getCustomers({all: true}, (err, customers)=> {
+    DataHelpers.getCustomers(null, (err, customers)=> {
+        if (err) {
+        res.status(500).json({ error: err.message });
+      } else {
+        res.json(customers);
+      }
+    });
+
+  });
+
+  router.get("/:id", (req, res) => {
+
+    DataHelpers.getCustomers(req.params.id, (err, customers)=> {
         if (err) {
         res.status(500).json({ error: err.message });
       } else {
