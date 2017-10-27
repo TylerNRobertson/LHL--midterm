@@ -41,11 +41,22 @@ module.exports = (DataHelpers) => {
 
   });
 
-  // delete a customer
-  router.delete("/:id", (req, res) => {
+    // delete a customer
+    router.delete("/:id", (req, res) => {
+        console.log("delete food item");
+        console.log(req.params.id);
+        DataHelpers.deleteCustomer(req.params.id, (err) => {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.status(201).redirect('/');
+            }
+        });
 
+    });
 
-  });
 
   return router;
 }
