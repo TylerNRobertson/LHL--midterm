@@ -97,7 +97,7 @@ module.exports = (DataHelpers) => {
                     error: err.message
                 });
             } else {
-                res.status(201).redirect('/');
+                res.status(201).redirect('/data');
             }
         });
 
@@ -116,7 +116,7 @@ module.exports = (DataHelpers) => {
                     error: err.message
                 });
             } else {
-                res.status(201).redirect('/');
+                res.status(201).redirect('/data');
             }
         });
 
@@ -133,7 +133,7 @@ module.exports = (DataHelpers) => {
                     error: err.message
                 });
             } else {
-                res.status(201).redirect('/');
+                res.status(201).redirect('/data');
             }
         });
     });
@@ -146,7 +146,7 @@ module.exports = (DataHelpers) => {
                     error: err.message
                 });
             } else {
-                res.status(201).redirect('/');
+                res.status(201).redirect('/data');
             }
         });
     });
@@ -161,7 +161,7 @@ module.exports = (DataHelpers) => {
                     error: err.message
                 });
             } else {
-                res.status(201).redirect('/');
+                res.status(201).redirect('/data');
             }
         });
 
@@ -178,7 +178,7 @@ module.exports = (DataHelpers) => {
                     error: err.message
                 });
             } else {
-                res.status(201).redirect('/');
+                res.status(201).redirect('/data');
             }
         });
 

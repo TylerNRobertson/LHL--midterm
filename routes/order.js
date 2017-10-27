@@ -57,7 +57,7 @@ module.exports = (DataHelpers) => {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
-        res.status(201).redirect('/');
+        res.status(201).redirect('/data');
       }
     });
 
@@ -74,7 +74,7 @@ module.exports = (DataHelpers) => {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
-        res.status(201).redirect('/');
+        res.status(201).redirect('/data');
       }
     });
 
@@ -88,7 +88,7 @@ module.exports = (DataHelpers) => {
                     error: err.message
                 });
             } else {
-                res.status(201).redirect('/');
+                res.status(201).redirect('/data');
             }
         });
     });
@@ -101,7 +101,7 @@ module.exports = (DataHelpers) => {
                     error: err.message
                 });
             } else {
-                res.status(201).redirect('/');
+                res.status(201).redirect('/data');
             }
         });
     });
@@ -115,7 +115,7 @@ module.exports = (DataHelpers) => {
                     error: err.message
                 });
             } else {
-                res.status(201).redirect('/');
+                res.status(201).redirect('/data');
             }
         });
 
@@ -130,7 +130,7 @@ module.exports = (DataHelpers) => {
                     error: err.message
                 });
             } else {
-                res.status(201).redirect('/');
+                res.status(201).redirect('/data');
             }
         });
 
