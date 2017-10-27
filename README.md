@@ -1,3 +1,6 @@
+DATABASE schema definitions are here:
+https://docs.google.com/spreadsheets/d/1tdfC2ywA8dXkJvKh55d5tS1ZJUAGKIOQ6y8Etg3Tjmw/edit#gid=2007291170
+
 List of user Stories
 
 Nouns are in _italics_

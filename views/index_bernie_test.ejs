@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home Page</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app_test_get.js"></script>
+  </head>
+
+  <body>
+
+    <header>
+      <% include ./partials/header.ejs %>
+    </header>
+    <section id="gettest">
+      <h1> GET TESTS </h1>
+      <section id="menutest"> <h4> menu test </h4> </section>
+
+      <section id="menuitemtest"> <h4> menu item test </h4> </section>
+
+      <section id="ordertest"> <h4> order test </h4> </section>
+
+      <section id="orderitemtest"> <h4> orderitem test </h4>  </section>
+
+      <section id="customertest"> <h4> customer test </h4>  </section>
+    </section>
+
+    <section id="posttest">
+      <h1> POST TESTS </h1>
+      <section id="postmenutest"> <h4> menu test </h4> </section>
+        <form action="/api/menus" method="POST">
+          <textarea name="menuname"  placeholder="name"></textarea>
+          <textarea name="menudesc" placeholder="description"></textarea>
+          <textarea name="menucat"  placeholder="category"></textarea>
+
+          <input type="submit" value="Make Menu">
+
+        </form>
+      <section id="postmenuitemtest"> <h4> menu item test </h4> </section>
+        <form action="/api/menus/item" method="POST">
+          <input type=number name="mi_menuID"  placeholder="menuID">
+          <input type=number name="mi_foodID" placeholder="foodID">
+          <textarea name="mi_cat"  placeholder="category"></textarea>
+
+          <input type="submit" value="Make Menu Item">
+
+        </form>
+      <section id="postordertest"> <h4> order test </h4> </section>
+        <form action="/api/orders" method="POST">
+          <input type=number name="o_customerId"  placeholder="o_customerId">
+           <p></p>
+          <label>placed<input type="checkbox" name="o_placed" placeholder="o_placed" type="checkbox"></label>
+            <p></p>
+          <label>canceled<input type="checkbox" name="o_canceled"></label>
+            <p></p>
+          <label>ready<input type="checkbox" name="o_ready"></label>
+            <p></p>
+          <label>complete<input type="checkbox" name="o_complete" ></label>
+            <p></p>
+
+          <label><input type="submit" value="Make Order">
+
+        </form>
+      <section id="postorderitemtest"> <h4> orderitem test </h4>  </section>
+        <form action="/api/orders/item" method="POST">
+          <input type=number name="oi_orderId"  placeholder="oi_orderId">
+          <input type=number name="oi_foodItem_id" placeholder="oi_foodItem_id">
+          <input type=number name="oi_quantity"  placeholder="oi_quantity">
+          <input type=number step="0.01" name="oi_price"  placeholder="oi_price">
+
+          <input type="submit" value="Make Order Item">
+
+        </form>
+       <section id="postcustomertest"> <h4> customer test </h4>  </section>
+       <section id="postfooditemtest"> <h4> food item test </h4>  </section>
+    </section>
+
+  </body>
+</html>
