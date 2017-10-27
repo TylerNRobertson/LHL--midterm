@@ -1,34 +1,43 @@
 DATABASE schema definitions are here:
 https://docs.google.com/spreadsheets/d/1tdfC2ywA8dXkJvKh55d5tS1ZJUAGKIOQ6y8Etg3Tjmw/edit#gid=2007291170
 
-Bernie to do for friday
 
-figure out the api routes OK
 
-item gets for Menu/Order
-(put a button go to id)
+How the work has been divided so far:
+Front/Back-end division
 
-Order
-OItem
-Menu
-MItem
-FoodItem
-Customer
+all api routing done on the backend
+all the screen flow done on the frontend
+frontend requests data via ajax JSON calls.
 
-all the updates
+# THINGS TO DO
 
-make the update forms - then make them the get html
+FRIDAY OCT 27.
 
-Order
-OItem
-Menu
-MItem
-FoodItem
-Customer
+1.put alert boxes everywhere for any event that needs to be handled
+2.assign a class/classes/ids/whatevers to whatever events need to be verified
+3.Start clicking on things and work to replace the alert boxes with code, or with nothing
 
-after all of the above is done.
+Start the routing for the test webpages and loader
 
-start the routing for the test webpages and loader
+
+## SCARP THE FOLLOWING BUT THINK ABOUT IT FOR LATER
+Take advantage of the bubbling event propagation
+
+onClick listener api (delegated to higher level to allow for data checks/ stopevent propagation in order to allow for frontend page redirects )gets/put/delete/posts linked to class
+
+onClick listener for data check at "closer" level
+
+OR (could just have functions called at the same place in order avoid confusion)
+
+idea is to keep functionality separate, possibly in totally separate script files.
+## END OF SCRAP IDEA.
+
+Sunday AM - refactor
+Sunday PM - retest rehearse.
+
+checker.js (can we)
+
 
 
 List of user Stories
