@@ -32,8 +32,6 @@ const customerRoutesAPI = require("./routes/customer");
 // Food Object routes
 const foodRoutesAPI = require("./routes/food");
 
-
-
 //// NAVIGATION ROUTES
 
 // Menu
@@ -67,7 +65,7 @@ const vendorCustomerRoutes = require("./routes/vendor/customer");
     // select the first menu by default
    let defaultMenu = menus[0];
 
-    menus.forEach((menu) => {
+    menus.forEach((menu,index) => {
         if (menu.default == true) {
             defaultMenu = menu;
         };
