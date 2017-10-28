@@ -7,6 +7,7 @@ const ENV = process.env.ENV || "development";
 
 const express = require("express");
 const methodOverride = require('method-override');
+const cookieSession = require('cookie-session');
 const bodyParser = require("body-parser");
 const sass = require("node-sass-middleware");
 const app = express();
@@ -15,6 +16,30 @@ const knexConfig = require("./knexfile");
 const knex = require("knex")(knexConfig[ENV]);
 const morgan = require('morgan');
 const knexLogger = require('knex-logger');
+
+
+let bcrypt = require('bcrypt');
+
+
+//////// function declarations ///////////
+
+const generateRandomString = function(){
+  // list of valid characters the random sequence can be composed of a-z + A-Z + 0-9 order doesn't matter
+  const aToZ = "qwertyuiopasdfghjklzxcvbnm";
+  // literal template
+  const validChars = `1234567890${aToZ}${aToZ.toUpperCase()}`;
+  let randomString = "";
+  let numberOfChars = 16;
+
+// choose n number of chars randomly from the list of valid characters
+  for(let i = 0 ; i < numberOfChars ; i++){
+     randomString += validChars.charAt(Math.floor(Math.random()*validChars.length))
+  }
+  return(randomString);
+}
+
+
+const digest = generateRandomString();
 
 
 //// API Routes
@@ -60,21 +85,6 @@ const customerCustomerRoutes = require("./routes/customer/customer");
 // Vendor router
 const vendorCustomerRoutes = require("./routes/vendor/customer");
 
- function selectDefaultMenu(menus){
-
-    // select the first menu by default
-   let defaultMenu = menus[0];
-
-    menus.forEach((menu,index) => {
-        if (menu.default == true) {
-            defaultMenu = menu;
-        };
-    });
-
-    return defaultMenu;
-
-};
-
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -82,6 +92,9 @@ app.use(morgan('dev'));
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
+
+app.use(cookieSession({name : 'session',
+                       keys : [digest]}));
 
 app.set("view engine", "ejs");
 // override with POST having ?_POSTOverride=PUT/DELETE method=POST
@@ -132,16 +145,16 @@ app.use("/customer/food", customerFoodRoutes(DataHelpers));
 
 // Mount Vendor NAVIGATION Routes
 // Mount menu routes
-app.use("/vendor/menus", vendorMenuRoutes(DataHelpers));
+// app.use("/vendor/menus", vendorMenuRoutes(DataHelpers));
 
-// Mount order routes
-app.use("/vendor/orders", vendorOrderRoutes(DataHelpers));
+// // Mount order routes
+// app.use("/vendor/orders", vendorOrderRoutes(DataHelpers));
 
-// Mount vendor routes
-app.use("/vendor/customer", vendorCustomerRoutes(DataHelpers));
+// // Mount vendor routes
+// app.use("/vendor/customer", vendorCustomerRoutes(DataHelpers));
 
-// Mount food routes
-app.use("/vendor/food", vendorFoodRoutes(DataHelpers));
+// // Mount food routes
+// app.use("/vendor/food", vendorFoodRoutes(DataHelpers));
 
 
 // Home page

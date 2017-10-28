@@ -37,10 +37,12 @@ module.exports = (DataHelpers) => {
                     address: req.body.c_address,
                     phone: req.body.c_phone,
                     email: req.body.c_email,
-                             },(err)=> {
+                             },(err,result)=> {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
+        console.log("customer post");
+        console.log(resuslt);
         res.status(201).redirect('/data');
       }
     });

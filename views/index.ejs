@@ -32,71 +32,36 @@
           <ul class="menu_list">
 
           <% menus.forEach(function(menu) { %>
-              <li class="menu" id=`"menu_<%= menu.id %>"><%= menu.name %> </li>
+              <li class="menu" id=`"menu_<%= menu.id %>">
+                <a href="http://localhost:8080/customer/menus/<%= menu.id %>"><%= menu.name %></a>
+              </li>
           <% }); %>
-
-            <li class="menu" id="breakfast"><a href="">Breakfast</a></li>
-            <li class="menu" id="lunch"><a href="./create?menuId=3">Lunch</a></li>
-            <li class="menu" id="dinner"><a href="">Dinner</a></li>
           </ul>
         </nav>
     </header>
     <section id="menu_items">
-      <h1 class="menuname">Breakfast Menu default test: <%= activeMenu.name %></h1>
-      <p class="description">The wheel rattles beside the cinema! A confused crop spits the flown class.<br /> The medium taxpayer flashes. On top of the pedantry appears an underlying censorship.</p>
+      <h1 class="menuname"><%= activeMenu.name %></h1>
+      <p class="description"><%= activeMenu.description %> </p>
       <!-- This include is what shows the item pop up -->
       <% include ./partials/user/menuitem.ejs %>
 <% activeMenuItems.forEach(function(menuItem,index) { %>
 <% if( (index) % 3 === 0) { %>
       <div class="line">
-
     <%  } %>
         <div class="card">
           <img src="http://via.placeholder.com/275x150">
           <div class="card_body">
-            <p>iterative element here id <%= menuItem.id %> cat <%= menuItem.category %> foodid <%= menuItem.foodId %></p>
+            <p> Menu ID <%= menuItem.id %> Food Item ID <%= menuItem.foodId %> <%= menuItem.category %> foodid <%= menuItem.foodId %></p>
             <p class="info">- iterative Lunch/Dinner</p>
-            <p class="info">- iterative Includes a medium drink</p>
-            <p class="desc">iterative House made bun, lettuce, tomato, onions, ketchup, mustard, pickles and bacon.</p>
-            <p class="info">iterativeprice: $10.99</p>
+            <p class="info">- <%= foodItems[menuItem.foodId].category %></p>
+            <p class="desc">- <%= foodItems[menuItem.foodId].description %></p>
+            <p class="info"> $<%= foodItems[menuItem.foodId].price %></p>
             <button type="button" class="custombtn" data-toggle="modal" data-target="#itempopup"><i class="fa fa-plus-circle" aria-hidden="true"></i>  Order</button>
           </div>
         </div>
         <% }) %>
       <div class="line">
-        <div class="card">
-          <img src="http://via.placeholder.com/275x150">
-          <div class="card_body">
-            <p>Hamburger and Fries</p>
-            <p class="info">- Lunch/Dinner</p>
-            <p class="info">- Includes a medium drink</p>
-            <p class="desc">House made bun, lettuce, tomato, onions, ketchup, mustard, pickles and bacon.</p>
-            <p class="info">Price: $10.99</p>
-            <button type="button" class="custombtn" data-toggle="modal" data-target="#itempopup"><i class="fa fa-plus-circle" aria-hidden="true"></i>  Order</button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="http://via.placeholder.com/275x150">
-          <div class="card_body">
-            <p>Hamburger and Fries</p>
-            <p class="info">- Lunch/Dinner</p>
-            <p class="info">- Includes a medium drink</p>
-            <p class="desc">House made bun, lettuce, tomato, onions, ketchup, mustard, pickles and bacon.</p>
-            <p class="info">Price: $10.99</p>
-            <button type="button" class="custombtn" data-toggle="modal" data-target="#itempopup"><i class="fa fa-plus-circle" aria-hidden="true"></i>  Order</button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="http://via.placeholder.com/275x150">
-          <div class="card_body">
-            <p>Hamburger and Fries</p>
-            <p class="info">- Lunch/Dinner</p>
-            <p class="info">- Includes a medium drink</p>
-            <p class="desc">House made bun, lettuce, tomato, onions, ketchup, mustard, pickles and bacon.</p>
-            <p class="info">Price: $10.99</p>
-            <button type="button" class="custombtn" data-toggle="modal" data-target="#itempopup"><i class="fa fa-plus-circle" aria-hidden="true"></i>  Order</button>
-          </div>
-        </div>
+
       </div>
   </section>
   </body>

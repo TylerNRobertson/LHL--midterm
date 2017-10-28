@@ -15,7 +15,7 @@ frontend requests data via ajax JSON calls.
 
 pass as parameter the active menu for the create order screen
 
-?menuId = menuID
+
 
 have all the a=hrefs /create/?
 Analysis
