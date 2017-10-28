@@ -21,9 +21,7 @@ module.exports = (DataHelpers) => {
 // get all menus
     router.get("/", (req, res) => {
       console.log("/");
-        DataHelpers.getMenus({
-            all: true
-        }, (err, menus) => {
+        DataHelpers.getMenus(null, (err, menus) => {
             if (err) {
                 res.status(500).json({
                     error: err.message

@@ -2,19 +2,19 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 8080;
-const ENV         = process.env.ENV || "development";
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.ENV || "development";
 
-const express     = require("express");
+const express = require("express");
 const methodOverride = require('method-override');
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const bodyParser = require("body-parser");
+const sass = require("node-sass-middleware");
+const app = express();
 
-const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
-const morgan      = require('morgan');
-const knexLogger  = require('knex-logger');
+const knexConfig = require("./knexfile");
+const knex = require("knex")(knexConfig[ENV]);
+const morgan = require('morgan');
+const knexLogger = require('knex-logger');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -27,8 +27,24 @@ const orderRoutes = require("./routes/order");
 const customerRoutes = require("./routes/customer");
 
 // Food Object routes
-const foodRoutes = require("./routes/food")
+const foodRoutes = require("./routes/food");
 
+
+//
+ function selectDefaultMenu(menus){
+
+    // select the first menu by default
+   let defaultMenu = menus[0];
+
+    menus.forEach((menu) => {
+        if (menu.default == true) {
+            defaultMenu = menu;
+        };
+    });
+
+    return defaultMenu;
+
+};
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -41,12 +57,14 @@ app.use(knexLogger(knex));
 app.set("view engine", "ejs");
 // override with POST having ?_POSTOverride=PUT/DELETE method=POST
 app.use(methodOverride('_POSTOverride'));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use("/styles", sass({
-  src: __dirname + "/styles",
-  dest: __dirname + "/public/styles",
-  debug: true,
-  outputStyle: 'expanded'
+    src: __dirname + "/styles",
+    dest: __dirname + "/public/styles",
+    debug: true,
+    outputStyle: 'expanded'
 }));
 app.use(express.static('public'))
 
@@ -70,24 +88,47 @@ app.use("/api/food", foodRoutes(DataHelpers));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("landing");
+
+    res.render("landing");
 });
 
 // Home page
 app.get("/data", (req, res) => {
-  res.render("index_bernie_test");
+    res.render("index_bernie_test");
 });
 
 //User Create Order page
 app.get("/create", (req, res) => {
-  res.render("index");
+
+    DataHelpers.getMenus(null, (err, menus) => {
+        if (err) {
+            console.log(err);
+        } else {
+            let defaultMenu = selectDefaultMenu(menus);
+            // we need to determine which is the start menu
+            // flag in the menu?
+            DataHelpers.getMenuItems(defaultMenu.id, (err, defaultMenuItems) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render('index', {
+                        menus: menus,
+                        activeMenu: defaultMenu,
+                        activeMenuItems: defaultMenuItems
+                    });
+                }
+            });
+
+        }
+    });
+
 });
 
 // Vendor page
 app.get("/vendor", (req, res) => {
-  res.render("./vendor_pages/vendormain");
+    res.render("./vendor_pages/vendormain");
 });
 
 app.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
+    console.log("Example app listening on port " + PORT);
 });
