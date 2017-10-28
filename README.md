@@ -12,6 +12,16 @@ frontend requests data via ajax JSON calls.
 
 # THINGS TO DO
 
+
+pass as parameter the active menu for the create order screen
+
+?menuId = menuID
+
+have all the a=hrefs /create/?
+Analysis
+
+index.html
+
 FRIDAY OCT 27.
 
 1.put alert boxes everywhere for any event that needs to be handled
