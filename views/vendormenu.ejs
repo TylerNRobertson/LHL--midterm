@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home Page</title>
+    <title>Vendor Menus</title>
 
     <!-- CSS/Vendor CSS cdn's -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
@@ -27,45 +27,60 @@
 
   <body>
     <header>
-      <% include ./partials/header.ejs %>
-      <% include ./partials/user/myorder.ejs %>
-      <% include ./partials/user/orderprogress.ejs %>
+      <% include ./partials/vendor/header.ejs %>
+      <
         <nav id="nav">
+
           <ul class="menu_list">
- <% menus.forEach(function(menu) { %>
+<a href="/vendor/menusaux/new"><button type="button" class="vendorMenus"> ADD NEW MENU</button></a>
+
+          <% menus.forEach(function(menu) { %>
               <li class="menu" id=`"menu_<%= menu.id %>">
-                <a href="/customer/menus/<%= menu.id %>"><%= menu.name %></a>
+                <a href="/vendor/menusaux/<%= menu.id %>"><%= menu.name %></a>
 
 
               </li>
 
           <% }); %>
 
-
           </ul>
         </nav>
     </header>
     <section id="menu_items">
-      <h1 class="menuname"><%= activeMenu.name %></h1>
+      <h1 class="menuname"><%= activeMenu.name %>
+       <form action="/vendor/menusaux/<%= activeMenu.id %>?_POSTOverride=DELETE" method="POST">
+
+         <input type="submit" value="Delete Menu <%= activeMenu.id %>">
+
+       </form>
+
+
+        </h1>
       <p class="description"><%= activeMenu.description %> </p>
       <!-- This include is what shows the item pop up -->
+       <div class="line">
+        <div class="card">
+          <img src="http://via.placeholder.com/275x150">
+          <div class="card_body">
+            <p> ADD NEW</p>
+<a href="/vendor/menusaux/<%=activeMenu.id %>/items"><button type="button" class="vendorMenus"> ADD NEW ITEM TO MENU</button></a>
 
+          </div>
+        </div>
 <% activeMenuItems.forEach(function(menuItem,index) { %>
+<% if( (index + 1) % 3 === 0) { %>
 
-<% if( (index) % 3 === 0) { %>
-      <div class="line">
     <%  } %>
         <div class="card">
           <img src="http://via.placeholder.com/275x150">
           <div class="card_body">
-            <p> Menu ID <%= menuItem.id %> Food Item ID <%= menuItem.foodId %>
-              <%= menuItem.category %> foodid <%= menuItem.foodId %></p>
-            <p class="info">- <%= foodItems[menuItem.foodId].category %></p>
-            <p class="desc">- <%= foodItems[menuItem.foodId].description %></p>
+            <p> Menu ID <%= menuItem.id %> Food Item ID <%= menuItem.foodId %> <%= menuItem.category %> foodid <%= menuItem.foodId %></p>
+            <p class="foodcat">- <%= foodItems[menuItem.foodId].category %></p>
+            <p class="fooddesc">- <%= foodItems[menuItem.foodId].description %></p>
             <p class="info">- <%= foodItems[menuItem.foodId].price %></p>
-            <button type="button" class="custombtn addItemToCart" >Plus</button>
-            <div class="qty" foodid="<%= menuItem.foodId %>"> <%= cookies["010"] %></div>
-            <button type="button" class="custombtn subItemFromCart">Minus</button>
+        <form action="/vendor/menusaux/items/<%= menuItem.id %>?_POSTOverride=DELETE" method="POST">
+          <input type="submit" value="Delete Item <%= menuItem.id %>">
+        </form>
           </div>
         </div>
         <% }) %>

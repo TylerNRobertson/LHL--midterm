@@ -19,23 +19,39 @@ function selectDefaultMenu(menus) {
 
 // menus
 module.exports = (DataHelpers) => {
-    //User Create Order page
+// get food, get menus, get a default menu and items to display
     app.get("/", (req, res) => {
 
-        DataHelpers.getMenus(null, (err, menus) => {
-            // we need to determine which is the start menu
-            // flag in the menu?
-            let activeMenu = selectDefaultMenu(menus);
-            DataHelpers.getMenuItems(activeMenu.id, (err, activeMenuItems) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    res.render('index', {
-                        menus: menus,
-                        activeMenu: activeMenu,
-                        activeMenuItems: activeMenuItems
-                    });
-                }
+console.log("cart");
+
+if (!req.session.cart) {req.session.cart = {};};
+
+
+        DataHelpers.getFoodItems(null, (err, foodItems) => {
+          let foodItemsObject = {};
+          foodItems.forEach((item)=>{ foodItemsObject[item.id] = item });
+          console.log("foods object",foodItemsObject);
+            DataHelpers.getMenus(null, (err, menus) => {
+                // we need to determine which is the start menu
+                // flag in the menu?
+                let activeMenu = selectDefaultMenu(menus);
+                DataHelpers.getMenuItems(activeMenu.id, (err, activeMenuItems) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                      console.log("sessions");
+                      console.log(req.cookies);
+                      console.log(req.session);
+
+                        res.render('index', {
+                            menus: menus,
+                            activeMenu: activeMenu,
+                            activeMenuItems: activeMenuItems,
+                            foodItems: foodItemsObject,
+                            cookies: req.cookies
+                        });
+                    }
+                });
             });
         });
     });
@@ -43,53 +59,61 @@ module.exports = (DataHelpers) => {
 
     // specific menu
     app.get("/:id", (req, res) => {
+        DataHelpers.getFoodItems(null, (err, foodItems) => {
+          let foodItemsObject = {};
+          foodItems.forEach((item)=>{ foodItemsObject[item.id] = item });
 
-            DataHelpers.getMenus(null, (err, menus) => {
-                    // we need to determine which is the start menu
-                    // flag in the menu?
+        DataHelpers.getMenus(null, (err, menus) => {
+            // we need to determine which is the start menu
+            // flag in the menu?
 
 
-                    let activeMenuArray = menus.filter((menu) => {
-                        return menu.id == req.params.id
-                    });
-                    if (activeMenuArray.length) {
-                        let activeMenu = activeMenuArray[0];
-                        DataHelpers.getMenuItems(activeMenu.id, (err, activeMenuItems) => {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                res.render('index', {
-                                    menus: menus,
-                                    activeMenu: activeMenu,
-                                    activeMenuItems: activeMenuItems
-                                });
-                            }
-                        });
-                        // something happened just go to index page
+            let activeMenuArray = menus.filter((menu) => {
+                return menu.id == req.params.id
+            });
+            if (activeMenuArray.length) {
+                let activeMenu = activeMenuArray[0];
+                DataHelpers.getMenuItems(activeMenu.id, (err, activeMenuItems) => {
+                    if (err) {
+                        console.log(err);
                     } else {
-                        let activeMenu = selectDefaultMenu(menus);
-                        DataHelpers.getMenuItems(activeMenu.id, (err, activeMenuItems) => {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                res.render('index', {
-                                    menus: menus,
-                                    activeMenu: activeMenu,
-                                    activeMenuItems: activeMenuItems
-                                });
-                            }
+                        res.render('index', {
+                            menus: menus,
+                            activeMenu: activeMenu,
+                            activeMenuItems: activeMenuItems,
+                            foodItems: foodItemsObject,
+                            cookies: req.cookies
                         });
                     }
                 });
-            });
+                // something happened just go to index page
+            } else {
+                let activeMenu = selectDefaultMenu(menus);
+                DataHelpers.getMenuItems(activeMenu.id, (err, activeMenuItems) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.render('index', {
+                            menus: menus,
+                            activeMenu: activeMenu,
+                            activeMenuItems: activeMenuItems,
+                            foodItems: foodItemsObject,
+                            cookies: req.cookies
+                        });
+                    }
+                });
+            }
+        });
+      });
+    });
 
 
 
-// menu items
-app.get("/items", (req, res) => {});
-// specific menu item
-app.get("/items/:id", (req, res) => {});
+    // menu items
+    app.get("/items", (req, res) => {});
+    // specific menu item
+    app.get("/items/:id", (req, res) => {});
 
-return app;
+    return app;
 
 }

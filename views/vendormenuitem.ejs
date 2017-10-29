@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home Page</title>
+    <title>Vendor foods</title>
 
     <!-- CSS/Vendor CSS cdn's -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
@@ -27,45 +27,37 @@
 
   <body>
     <header>
-      <% include ./partials/header.ejs %>
-      <% include ./partials/user/myorder.ejs %>
-      <% include ./partials/user/orderprogress.ejs %>
+      <% include ./partials/vendor/header.ejs %>
+
         <nav id="nav">
-          <ul class="menu_list">
- <% menus.forEach(function(menu) { %>
-              <li class="menu" id=`"menu_<%= menu.id %>">
-                <a href="/customer/menus/<%= menu.id %>"><%= menu.name %></a>
 
 
-              </li>
-
-          <% }); %>
-
-
-          </ul>
         </nav>
     </header>
-    <section id="menu_items">
-      <h1 class="menuname"><%= activeMenu.name %></h1>
-      <p class="description"><%= activeMenu.description %> </p>
-      <!-- This include is what shows the item pop up -->
-
-<% activeMenuItems.forEach(function(menuItem,index) { %>
+    <section id="food_items">
+      <h1> PICK FOOD ITEM TO PLACE ON MENU </h1>
+<div class="line">
+<% foodItems.forEach(function(foodItem,index) { %>
 
 <% if( (index) % 3 === 0) { %>
-      <div class="line">
+<div class="line">
     <%  } %>
         <div class="card">
           <img src="http://via.placeholder.com/275x150">
           <div class="card_body">
-            <p> Menu ID <%= menuItem.id %> Food Item ID <%= menuItem.foodId %>
-              <%= menuItem.category %> foodid <%= menuItem.foodId %></p>
-            <p class="info">- <%= foodItems[menuItem.foodId].category %></p>
-            <p class="desc">- <%= foodItems[menuItem.foodId].description %></p>
-            <p class="info">- <%= foodItems[menuItem.foodId].price %></p>
-            <button type="button" class="custombtn addItemToCart" >Plus</button>
-            <div class="qty" foodid="<%= menuItem.foodId %>"> <%= cookies["010"] %></div>
-            <button type="button" class="custombtn subItemFromCart">Minus</button>
+            <p> food ID <%= foodItem.id %>
+                 Food cat <%= foodItem.category %>
+                 foodid <%= foodItem.foodId %></p>
+            <p class="foodname">- name <%= foodItem.name %></p>
+            <p class="foodcat">- category <%= foodItem.category %></p>
+            <p class="fooddesc">- description <%= foodItem.description %></p>
+            <p class="foodprice">- price <%= foodItem.price %></p>
+            <p class="foodprep">- prep time <%= foodItem.prep_time_min %></p>
+            <p class="foodpopindex">- <%= foodItem.pop_index %> popularity</p>
+      <form action="/vendor/menusaux/<%= menuId %>/items/<%= foodItem.id %>" method="POST">
+          <input type="submit" value="CHOOSE THIS <%= foodItem.id %>">
+        </form>
+
           </div>
         </div>
         <% }) %>

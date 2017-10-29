@@ -68,7 +68,8 @@ module.exports = (DataHelpers) => {
 
     router.get("/:id", (req, res) => {
       console.log("/:id");
-        DataHelpers.getMenus(req.params.id, (err, menus) => {
+        DataHelpers.getMenus(req.params.id
+        , (err, menus) => {
             if (err) {
                 res.status(500).json({
                     error: err.message

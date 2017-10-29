@@ -27,9 +27,10 @@
 
   <body>
     <header>
-      <% include ./partials/header.ejs %>
+
       <% include ./partials/user/myorder.ejs %>
       <% include ./partials/user/orderprogress.ejs %>
+      <% include ./partials/customer/header.ejs %>
         <nav id="nav">
           <ul class="menu_list">
  <% menus.forEach(function(menu) { %>
@@ -63,7 +64,10 @@
             <p class="info">- <%= foodItems[menuItem.foodId].category %></p>
             <p class="desc">- <%= foodItems[menuItem.foodId].description %></p>
             <p class="info">- <%= foodItems[menuItem.foodId].price %></p>
-            <button type="button" class="custombtn addItemToCart" >Plus</button>
+        <form action="/customer/orders/items/<%= menuItem.id %>?_POSTOverride=PUT" method="POST">
+          <input type="submit" value="udpate">
+        </form>
+            <button type="button" class="custombtn addItemToCart" >UPDATE</button>
             <div class="qty" foodid="<%= menuItem.foodId %>"> <%= cookies["010"] %></div>
             <button type="button" class="custombtn subItemFromCart">Minus</button>
           </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home Page</title>
+    <title>Vendor Menus</title>
 
     <!-- CSS/Vendor CSS cdn's -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
@@ -27,51 +27,46 @@
 
   <body>
     <header>
-      <% include ./partials/header.ejs %>
-      <% include ./partials/user/myorder.ejs %>
-      <% include ./partials/user/orderprogress.ejs %>
+      <% include ./partials/vendor/header.ejs %>
+
         <nav id="nav">
+
           <ul class="menu_list">
- <% menus.forEach(function(menu) { %>
+
+          <% menus.forEach(function(menu) { %>
               <li class="menu" id=`"menu_<%= menu.id %>">
-                <a href="/customer/menus/<%= menu.id %>"><%= menu.name %></a>
+                <a href="/vendor/menusaux/<%= menu.id %>"><%= menu.name %></a>
 
 
               </li>
 
           <% }); %>
 
-
           </ul>
         </nav>
     </header>
     <section id="menu_items">
-      <h1 class="menuname"><%= activeMenu.name %></h1>
-      <p class="description"><%= activeMenu.description %> </p>
+
+
+        <form action="/vendor/menusaux" method="POST">
+          <textarea name="menuname"  placeholder="name"></textarea>
+          <textarea name="menudesc" placeholder="description"></textarea>
+          <textarea name="menucat"  placeholder="category"></textarea>
+
+          <input type="submit" value="Make Menu">
+
+        </form>
+
+
+
+        </h1>
+
       <!-- This include is what shows the item pop up -->
+       <div class="line">
 
-<% activeMenuItems.forEach(function(menuItem,index) { %>
 
-<% if( (index) % 3 === 0) { %>
-      <div class="line">
-    <%  } %>
-        <div class="card">
-          <img src="http://via.placeholder.com/275x150">
-          <div class="card_body">
-            <p> Menu ID <%= menuItem.id %> Food Item ID <%= menuItem.foodId %>
-              <%= menuItem.category %> foodid <%= menuItem.foodId %></p>
-            <p class="info">- <%= foodItems[menuItem.foodId].category %></p>
-            <p class="desc">- <%= foodItems[menuItem.foodId].description %></p>
-            <p class="info">- <%= foodItems[menuItem.foodId].price %></p>
-            <button type="button" class="custombtn addItemToCart" >Plus</button>
-            <div class="qty" foodid="<%= menuItem.foodId %>"> <%= cookies["010"] %></div>
-            <button type="button" class="custombtn subItemFromCart">Minus</button>
-          </div>
-        </div>
-        <% }) %>
-      <div class="line">
-
-      </div>
   </section>
   </body>
 </html>
+
+
