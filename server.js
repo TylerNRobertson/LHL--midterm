@@ -146,7 +146,6 @@ app.use("/vendor/food", vendorFoodRoutes(DataHelpers));
 
 // Home page
 app.get("/", (req, res) => {
-
     res.render("landing");
 });
 
