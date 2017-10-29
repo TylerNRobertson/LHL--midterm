@@ -148,7 +148,7 @@ module.exports = (DataHelpers) => {
         });
     });
 
-    // delete a menu item
+    // delete a menu
     router.delete("/:id", (req, res) => {
         console.log("delete menu");
         console.log(req.params.id);

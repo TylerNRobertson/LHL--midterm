@@ -164,6 +164,8 @@ app.get("/", (req, res) => {
     res.render("landing");
 });
 
+
+
 // Home page
 app.get("/data", (req, res) => {
     res.render("index_bernie_test");
@@ -208,6 +210,12 @@ let activeMenuId = req.params.menuId || req.query.menuId;
 // Vendor page
 app.get("/vendor", (req, res) => {
     res.render("./vendor_pages/vendormain");
+});
+
+// Axuiliary Home page for demo
+app.get("/aux", (req, res) => {
+
+    res.render("aux");
 });
 
 app.listen(PORT, () => {

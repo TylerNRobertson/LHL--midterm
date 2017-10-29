@@ -2,6 +2,13 @@ DATABASE schema definitions are here:
 https://docs.google.com/spreadsheets/d/1tdfC2ywA8dXkJvKh55d5tS1ZJUAGKIOQ6y8Etg3Tjmw/edit#gid=2007291170
 
 
+PUT ORDER will update the session order
+
+POST ORDER will actually create it.
+
+Customers can modify the session not the order
+Vendor can modify the order
+
 
 How the work has been divided so far:
 Front/Back-end division
