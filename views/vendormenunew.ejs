@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vendor foods</title>
+    <title>Vendor Menus</title>
 
     <!-- CSS/Vendor CSS cdn's -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
@@ -32,39 +32,42 @@
       <% include ./partials/user/orderprogress.ejs %>
         <nav id="nav">
 
+          <ul class="menu_list">
+<button type="button" class="addMenu" > Add a new menu</button>
+          <% menus.forEach(function(menu) { %>
+              <li class="menu" id=`"menu_<%= menu.id %>">
+                <a href="/vendor/menusaux/<%= menu.id %>"><%= menu.name %></a>
 
+
+              </li>
+
+          <% }); %>
+
+          </ul>
         </nav>
     </header>
-    <section id="food_items">
-      <h1> PICK FOOD ITEM TO PLACE ON MENU </h1>
-<div class="line">
-<% foodItems.forEach(function(foodItem,index) { %>
+    <section id="menu_items">
 
-<% if( (index) % 3 === 0) { %>
-<div class="line">
-    <%  } %>
-        <div class="card">
-          <img src="http://via.placeholder.com/275x150">
-          <div class="card_body">
-            <p> food ID <%= foodItem.id %>
-                 Food cat <%= foodItem.category %>
-                 foodid <%= foodItem.foodId %></p>
-            <p class="foodname">- name <%= foodItem.name %></p>
-            <p class="foodcat">- category <%= foodItem.category %></p>
-            <p class="fooddesc">- description <%= foodItem.description %></p>
-            <p class="foodprice">- price <%= foodItem.price %></p>
-            <p class="foodprep">- prep time <%= foodItem.prep_time_min %></p>
-            <p class="foodpopindex">- <%= foodItem.pop_index %> popularity</p>
-      <form action="/vendor/menusaux/<%= menuId %>/items/<%= foodItem.id %>" method="POST">
-          <input type="submit" value="CHOOSE THIS <%= foodItem.id %>">
+
+        <form action="/vendor/menusaux" method="POST">
+          <textarea name="menuname"  placeholder="name"></textarea>
+          <textarea name="menudesc" placeholder="description"></textarea>
+          <textarea name="menucat"  placeholder="category"></textarea>
+
+          <input type="submit" value="Make Menu">
+
         </form>
 
-          </div>
-        </div>
-        <% }) %>
-      <div class="line">
 
-      </div>
+
+        </h1>
+
+      <!-- This include is what shows the item pop up -->
+       <div class="line">
+
+
   </section>
   </body>
 </html>
+
+

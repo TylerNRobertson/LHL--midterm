@@ -33,11 +33,12 @@
         <nav id="nav">
 
           <ul class="menu_list">
+<a href="/vendor/menusaux/new"><button type="button" class="vendorMenus"> ADD NEW MENU</button></a>
 <button type="button" class="addMenu" > Add a new menu</button>
           <% menus.forEach(function(menu) { %>
               <li class="menu" id=`"menu_<%= menu.id %>">
                 <a href="/vendor/menusaux/<%= menu.id %>"><%= menu.name %></a>
-                <button type="button" class="removeMenu" >Remove</button>
+
 
               </li>
 
@@ -47,7 +48,15 @@
         </nav>
     </header>
     <section id="menu_items">
-      <h1 class="menuname"><%= activeMenu.name %> <button type="button" class="removeMenu" >Remove</button></h1>
+      <h1 class="menuname"><%= activeMenu.name %>
+       <form action="/vendor/menusaux/<%= activeMenu.id %>?_POSTOverride=DELETE" method="POST">
+
+         <input type="submit" value="Delete Menu <%= activeMenu.id %>">
+
+       </form>
+
+
+        </h1>
       <p class="description"><%= activeMenu.description %> </p>
       <!-- This include is what shows the item pop up -->
        <div class="line">
@@ -56,7 +65,7 @@
           <div class="card_body">
             <p> ADD NEW</p>
 <a href="/vendor/menusaux/<%=activeMenu.id %>/items"><button type="button" class="vendorMenus"> ADD NEW ITEM TO MENU</button></a>
-            <button type="button" class="addMenuItem" >Add new Menu Item</button>
+
           </div>
         </div>
 <% activeMenuItems.forEach(function(menuItem,index) { %>
@@ -70,7 +79,9 @@
             <p class="foodcat">- <%= foodItems[menuItem.foodId].category %></p>
             <p class="fooddesc">- <%= foodItems[menuItem.foodId].description %></p>
             <p class="info">- <%= foodItems[menuItem.foodId].price %></p>
-            <button type="button" class="removeMenuItem" >Remove</button>
+        <form action="/vendor/menusaux/items/<%= menuItem.id %>?_POSTOverride=DELETE" method="POST">
+          <input type="submit" value="Delete Item <%= menuItem.id %>">
+        </form>
           </div>
         </div>
         <% }) %>
