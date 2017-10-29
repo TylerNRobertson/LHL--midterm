@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vendor foods</title>
+    <title>Vendor Menus</title>
 
     <!-- CSS/Vendor CSS cdn's -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
@@ -28,35 +28,46 @@
   <body>
     <header>
       <% include ./partials/vendor/header.ejs %>
-
+      <
         <nav id="nav">
 
+          <ul class="menu_list">
+<a href="/vendor/ordersaux/new"><button type="button" class="vendorMenus"> ADD NEW ORDER</button></a>
 
+          <% orders.forEach(function(order) { %>
+              <li class="menu" id=`"menu_<%= order.id %>">
+                <a href="/vendor/ordersaux/<%= order.id %>"><%= order.id %></a>
+
+
+              </li>
+
+          <% }); %>
+
+          </ul>
         </nav>
     </header>
-    <section id="food_items">
-      <h1> PICK FOOD ITEM TO PLACE ON MENU </h1>
-<div class="line">
-<% foodItems.forEach(function(foodItem,index) { %>
+    <section id="menu_items">
+      <h1 class="menuname"><%= activeOrder.id %>
 
-<% if( (index) % 3 === 0) { %>
-<div class="line">
+
+        </h1>
+      <p class="description"><%= activeOrder.id %> </p>
+      <p> customer info here - email phone name </p>
+      <button type="button" class="vendorMenus"> Notify Customer </button>
+      <!-- This include is what shows the item pop up -->
+       <div class="line">
+
+<% activeOrderItems.forEach(function(orderItem,index) { %>
+<% if( (index + 1) % 3 === 0) { %>
+
     <%  } %>
         <div class="card">
           <img src="http://via.placeholder.com/275x150">
           <div class="card_body">
-            <p> food ID <%= foodItem.id %>
-                 Food cat <%= foodItem.category %>
-                 foodid <%= foodItem.foodId %></p>
-            <p class="foodname">- name <%= foodItem.name %></p>
-            <p class="foodcat">- category <%= foodItem.category %></p>
-            <p class="fooddesc">- description <%= foodItem.description %></p>
-            <p class="foodprice">- price <%= foodItem.price %></p>
-            <p class="foodprep">- prep time <%= foodItem.prep_time_min %></p>
-            <p class="foodpopindex">- <%= foodItem.pop_index %> popularity</p>
-      <form action="/vendor/menusaux/<%= menuId %>/items/<%= foodItem.id %>" method="POST">
-          <input type="submit" value="CHOOSE THIS <%= foodItem.id %>">
-        </form>
+            <p> Menu ID <%= orderItem.id %> Food Item ID <%= orderItem.foodId %>  qty<%= orderItem.quanity %> foodid <%= orderItem.foodItem_id %></p>
+            <p class="foodcat">food cat - <%= foodItems[orderItem.foodItem_id].category %></p>
+            <p class="fooddesc">desc- <%= foodItems[orderItem.foodItem_id].description %></p>
+            <p class="info">- unit <%= foodItems[orderItem.foodItem_id].price %></p>
 
           </div>
         </div>

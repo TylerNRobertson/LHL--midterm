@@ -32,12 +32,16 @@
       <% include ./partials/user/orderprogress.ejs %>
         <nav id="nav">
           <ul class="menu_list">
-
-          <% menus.forEach(function(menu) { %>
+ <% menus.forEach(function(menu) { %>
               <li class="menu" id=`"menu_<%= menu.id %>">
-                <a href="http://localhost:8080/customer/menus/<%= menu.id %>"><%= menu.name %></a>
+                <a href="/customer/menus/<%= menu.id %>"><%= menu.name %></a>
+
+
               </li>
+
           <% }); %>
+
+
           </ul>
         </nav>
     </header>
@@ -47,15 +51,15 @@
       <!-- This include is what shows the item pop up -->
 
 <% activeMenuItems.forEach(function(menuItem,index) { %>
-<% include ./partials/user/menuitem.ejs %>
+
 <% if( (index) % 3 === 0) { %>
       <div class="line">
     <%  } %>
         <div class="card">
           <img src="http://via.placeholder.com/275x150">
           <div class="card_body">
-            <p> Menu ID <%= menuItem.id %> Food Item ID <%= menuItem.foodId %> <%= menuItem.category %> foodid <%= menuItem.foodId %></p>
-            <p class="info">- iterative Lunch/Dinner</p>
+            <p> Menu ID <%= menuItem.id %> Food Item ID <%= menuItem.foodId %>
+              <%= menuItem.category %> foodid <%= menuItem.foodId %></p>
             <p class="info">- <%= foodItems[menuItem.foodId].category %></p>
             <p class="desc">- <%= foodItems[menuItem.foodId].description %></p>
             <p class="info">- <%= foodItems[menuItem.foodId].price %></p>
