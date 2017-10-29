@@ -22,6 +22,11 @@ module.exports = (DataHelpers) => {
 // get food, get menus, get a default menu and items to display
     app.get("/", (req, res) => {
 
+console.log("cart");
+
+if (!req.session.cart) {req.session.cart = {};};
+
+
         DataHelpers.getFoodItems(null, (err, foodItems) => {
           let foodItemsObject = {};
           foodItems.forEach((item)=>{ foodItemsObject[item.id] = item });
@@ -34,11 +39,16 @@ module.exports = (DataHelpers) => {
                     if (err) {
                         console.log(err);
                     } else {
+                      console.log("sessions");
+                      console.log(req.cookies);
+                      console.log(req.session);
+
                         res.render('index', {
                             menus: menus,
                             activeMenu: activeMenu,
                             activeMenuItems: activeMenuItems,
-                            foodItems: foodItemsObject
+                            foodItems: foodItemsObject,
+                            cookies: req.cookies
                         });
                     }
                 });
@@ -71,7 +81,8 @@ module.exports = (DataHelpers) => {
                             menus: menus,
                             activeMenu: activeMenu,
                             activeMenuItems: activeMenuItems,
-                            foodItems: foodItemsObject
+                            foodItems: foodItemsObject,
+                            cookies: req.cookies
                         });
                     }
                 });
@@ -86,7 +97,8 @@ module.exports = (DataHelpers) => {
                             menus: menus,
                             activeMenu: activeMenu,
                             activeMenuItems: activeMenuItems,
-                            foodItems: foodItemsObject
+                            foodItems: foodItemsObject,
+                            cookies: req.cookies
                         });
                     }
                 });

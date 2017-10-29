@@ -20,7 +20,9 @@
     <!--  Vendor Scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/appaux.js"></script>
   </head>
 
   <body>
@@ -43,8 +45,9 @@
       <h1 class="menuname"><%= activeMenu.name %></h1>
       <p class="description"><%= activeMenu.description %> </p>
       <!-- This include is what shows the item pop up -->
-      <% include ./partials/user/menuitem.ejs %>
+
 <% activeMenuItems.forEach(function(menuItem,index) { %>
+<% include ./partials/user/menuitem.ejs %>
 <% if( (index) % 3 === 0) { %>
       <div class="line">
     <%  } %>
@@ -55,8 +58,10 @@
             <p class="info">- iterative Lunch/Dinner</p>
             <p class="info">- <%= foodItems[menuItem.foodId].category %></p>
             <p class="desc">- <%= foodItems[menuItem.foodId].description %></p>
-            <p class="info"> $<%= foodItems[menuItem.foodId].price %></p>
-            <button type="button" class="custombtn" data-toggle="modal" data-target="#itempopup"><i class="fa fa-plus-circle" aria-hidden="true"></i>  Order</button>
+            <p class="info">- <%= foodItems[menuItem.foodId].price %></p>
+            <button type="button" class="custombtn addItemToCart" >Plus</button>
+            <div class="qty" foodid="<%= menuItem.foodId %>"> <%= cookies["010"] %></div>
+            <button type="button" class="custombtn subItemFromCart">Minus</button>
           </div>
         </div>
         <% }) %>

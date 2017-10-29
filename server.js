@@ -7,6 +7,7 @@ const ENV = process.env.ENV || "development";
 
 const express = require("express");
 const methodOverride = require('method-override');
+const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const bodyParser = require("body-parser");
 const sass = require("node-sass-middleware");
@@ -64,26 +65,26 @@ const foodRoutesAPI = require("./routes/food");
 // Customer router
 const customerMenuRoutes = require("./routes/customer/menu");
 // Vendor router
-const vendorMenuRoutes = require("./routes/vendor/menu");
+const vendorMenuRoutes = require("./routes/vendor/menuaux");
 
 // Customer router
 const customerOrderRoutes = require("./routes/customer/order");
 // Vendor router
-const vendorOrderRoutes = require("./routes/vendor/order");
+const vendorOrderRoutes = require("./routes/vendor/orderaux");
 
 // Food routes
 
 // Customer router
 const customerFoodRoutes = require("./routes/customer/food");
 // Vendor router
-const vendorFoodRoutes = require("./routes/vendor/food");
+const vendorFoodRoutes = require("./routes/vendor/foodaux");
 
 // Customer routes
 
 // Customer router
 const customerCustomerRoutes = require("./routes/customer/customer");
 // Vendor router
-const vendorCustomerRoutes = require("./routes/vendor/customer");
+const vendorCustomerRoutes = require("./routes/vendor/customeraux");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -92,7 +93,7 @@ app.use(morgan('dev'));
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
-
+app.use(cookieParser());
 app.use(cookieSession({name : 'session',
                        keys : [digest]}));
 
@@ -145,16 +146,16 @@ app.use("/customer/food", customerFoodRoutes(DataHelpers));
 
 // Mount Vendor NAVIGATION Routes
 // Mount menu routes
-// app.use("/vendor/menus", vendorMenuRoutes(DataHelpers));
+app.use("/vendor/menusaux", vendorMenuRoutes(DataHelpers));
 
-// // Mount order routes
-// app.use("/vendor/orders", vendorOrderRoutes(DataHelpers));
+// Mount order routes
+app.use("/vendor/ordersaux", vendorOrderRoutes(DataHelpers));
 
-// // Mount vendor routes
-// app.use("/vendor/customer", vendorCustomerRoutes(DataHelpers));
+// Mount vendor routes
+app.use("/vendor/customeraux", vendorCustomerRoutes(DataHelpers));
 
-// // Mount food routes
-// app.use("/vendor/food", vendorFoodRoutes(DataHelpers));
+// Mount food routes
+app.use("/vendor/foodaux", vendorFoodRoutes(DataHelpers));
 
 
 // Home page
@@ -171,11 +172,8 @@ app.get("/data", (req, res) => {
 
 //User Create Order page
 app.get("/create", (req, res) => {
-  console.log("params",req.params);
-  console.log("query",req.query.menuId);
 
 let activeMenuId = req.params.menuId || req.query.menuId;
-console.log("id ",activeMenuId);
     DataHelpers.getMenus(null, (err, menus) => {
         let activeMenu = menus.filter((menu)=>{ return menu.id == activeMenuId})[0];
         console.log(activeMenu);
