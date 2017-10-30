@@ -1,3 +1,4 @@
+$abril: 'Abril Fatface', cursive;
 button.custombtn {
   background: transparent;
   border-color: transparent;
@@ -7,6 +8,7 @@ button.custombtn {
 h1.menuname {
   text-align: center;
   margin-bottom: 30px;
+  font-family: abril;
 }
 p.description {
   text-align: center;
@@ -26,6 +28,10 @@ div.line {
       img {
         width: 100%;
       }
+      .name {
+        text-align: center;
+        font-size: 20px;
+      }
   }
   .card_body {
     p {
@@ -42,7 +48,6 @@ div.line {
 }
 nav {
    margin-bottom: 50px;
-   background-color: #ccced1;
    opacity: 0.7;
     ul {
      text-align: center;
@@ -55,3 +60,15 @@ nav {
     }
   }
  }
+.description {
+  font-size: 20px;
+  text-align: center;
+}
+.menuname {
+  text-decoration: underline;
+  font-family: abril;
+}
+.orderqty {
+  margin-top: 40px;
+  width: 50%;
+}

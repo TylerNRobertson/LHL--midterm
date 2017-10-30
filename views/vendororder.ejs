@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vendor Menus</title>
+    <title>Vendor Orders</title>
 
     <!-- CSS/Vendor CSS cdn's -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
@@ -32,7 +32,7 @@
         <nav id="nav">
 
           <ul class="menu_list">
-<a href="/vendor/ordersaux/new"><button type="button" class="vendorMenus"> ADD NEW ORDER</button></a>
+
 
           <% orders.forEach(function(order) { %>
               <li class="menu" id=`"menu_<%= order.id %>">
@@ -47,13 +47,35 @@
         </nav>
     </header>
     <section id="menu_items">
-      <h1 class="menuname"><%= activeOrder.id %>
+      <h1 class="menuname"> Order <%= activeOrder.id %>
 
 
         </h1>
-      <p class="description"><%= activeOrder.id %> </p>
-      <p> customer info here - email phone name </p>
-      <button type="button" class="vendorMenus"> Notify Customer </button>
+
+      <h3>
+        <table>
+        <tr>
+          <td>
+       Order: <%= activeOrder.id %>
+     </td>
+          <td>
+     Cust ID: <%= activeOrder.customerId %>
+   </td>
+   <td>
+    Date Created: <%= activeOrder.date_time_created %>
+  </td>
+  <td>
+    Pickup: <%= activeOrder.date_time_pickup %>
+  </td>
+    <td>
+    Completed: <%= activeOrder.date_time_completed %>
+  </td>
+</tr>
+</table>
+</h3>
+      <p> <h2>TOTAL: <%= orderTotal %> </h2> </p>
+      <p> customer info here - email phone name
+      <button type="button" class="vendorMenus"> Notify Customer </button> </p>
       <!-- This include is what shows the item pop up -->
        <div class="line">
 
@@ -64,10 +86,12 @@
         <div class="card">
           <img src="http://via.placeholder.com/275x150">
           <div class="card_body">
-            <p> Menu ID <%= orderItem.id %> Food Item ID <%= orderItem.foodId %>  qty<%= orderItem.quanity %> foodid <%= orderItem.foodItem_id %></p>
+            <p> Order Item ID <%= orderItem.id %> Food Item ID <%= orderItem.foodId %>  foodid <%= orderItem.foodItem_id %></p>
             <p class="foodcat">food cat - <%= foodItems[orderItem.foodItem_id].category %></p>
             <p class="fooddesc">desc- <%= foodItems[orderItem.foodItem_id].description %></p>
             <p class="info">- unit <%= foodItems[orderItem.foodItem_id].price %></p>
+            <p class="info">- quantity <%= orderItem.quantity %>
+            <p class="info">- price <%= orderItem.price %>
 
           </div>
         </div>

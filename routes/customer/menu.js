@@ -22,26 +22,46 @@ module.exports = (DataHelpers) => {
     // get food, get menus, get a default menu and items to display
     app.get("/", (req, res) => {
 
+        console.log("active")
+        console.log(req.session.activeCustomer);
+        console.log(req.session.activeOrder);
 
         if (!req.session.activeCustomer) {
             // create active customer.
             req.session.activeCustomer = {};
             DataHelpers.postCustomer({}, (err, result) => {
 
-                req.session.activeCustomer = {};
+
                 req.session.activeCustomer.id = result[0];
-                DataHelpers.postOrder({}, (err, result) => {
-                    req.session.activeOrder.id = result[0];
-                })
+                DataHelpers.getCustomers(result[0], (err, result) => {
+                    req.session.activeCustomer = result[0];
+                    console.log("default customer");
+                    console.log(req.session.activeCustomer);
+                    DataHelpers.postOrder(null, (err, result) => {
+                        console.log("post order result");
+                        console.log(result);
+                        req.session.activeOrder = {};
+                        req.session.activeOrder.id = result[0];
+                        req.session.activeOrder.items = {};
+                        console.log(req.session.activeOrder)
+                    })
+                });
+
+
             });
         }
 
 
         if (!req.session.activeOrder) {
-            req.session.activeCustomer = {};
+req.session.activeOrder = {};
             // create active order for the customer
-            DataHelpers.postOrder({}, (err, result) => {
+            DataHelpers.postOrder(null, (err, result) => {
+                console.log("post order result II");
+                console.log(result);
                 req.session.activeOrder.id = result[0];
+                req.session.activeOrder.id = result[0];
+                req.session.activeOrder.items = {};
+                cosole.log(req.session.activeOrder)
             })
         }
 
@@ -59,31 +79,6 @@ module.exports = (DataHelpers) => {
             });
         }
 
-
-        // DataHelpers.getFoodItems(null, (err, foodItems) => {
-        //   let foodItemsObject = {};
-        //   foodItems.forEach((item)=>{ foodItemsObject[item.id] = item });
-
-        //     DataHelpers.getMenus(null, (err, menus) => {
-        //         // we need to determine which is the start menu
-        //         // flag in the menu?
-        //         let activeMenu = selectDefaultMenu(menus);
-        //         DataHelpers.getMenuItems(activeMenu.id, (err, activeMenuItems) => {
-        //             if (err) {
-        //                 console.log(err);
-        //             } else {
-
-        //                 res.render('customermenu', {
-        //                     menus: menus,
-        //                     activeMenu: activeMenu,
-        //                     activeMenuItems: activeMenuItems,
-        //                     foodItems: foodItemsObject,
-        //                     cookies: req.cookies
-        //                 });
-        //             }
-        //         });
-        //     });
-        // });
     });
 
 
@@ -114,7 +109,8 @@ module.exports = (DataHelpers) => {
                                 activeMenu: activeMenu,
                                 activeMenuItems: activeMenuItems,
                                 foodItems: foodItemsObject,
-                                cookies: req.cookies
+                                cookies: req.cookies,
+                                activeOrder: req.session.activeOrder
                             });
                         }
                     });
@@ -125,12 +121,13 @@ module.exports = (DataHelpers) => {
                         if (err) {
                             console.log(err);
                         } else {
-                            res.render('index', {
+                            res.render('customermenu', {
                                 menus: menus,
                                 activeMenu: activeMenu,
                                 activeMenuItems: activeMenuItems,
                                 foodItems: foodItemsObject,
-                                cookies: req.cookies
+                                cookies: req.cookies,
+                                activeOrder: req.session.activeOrder
                             });
                         }
                     });
