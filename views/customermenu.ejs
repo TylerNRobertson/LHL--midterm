@@ -60,18 +60,17 @@
           <img src="http://via.placeholder.com/275x150">
           <div class="card_body">
             <p> Menu ID <%= menuItem.id %> Food Item ID <%= menuItem.foodId %>
-              <%= menuItem.category %> foodid <%= menuItem.foodId %></p>
-            <p class="info">- <%= foodItems[menuItem.foodId].category %></p>
-            <p class="desc">- <%= foodItems[menuItem.foodId].description %></p>
-            <p class="info">- <%= foodItems[menuItem.foodId].price %></p>
-        <form action="/customer/orders/items/<%= menuItem.id %>?_POSTOverride=PUT" method="POST">
+             menu item cat <%= menuItem.category %> foodid <%= menuItem.foodId %></p>
+            <p class="info">- foodcat <%= foodItems[menuItem.foodId].category %></p>
+            <p class="desc">- desc <%= foodItems[menuItem.foodId].description %></p>
+            <p class="info">- price <%= foodItems[menuItem.foodId].price %></p>
+</div>
+        <form action="/customer/orders/items/<%= menuItem.foodId %>?_POSTOverride=PUT" method="POST">
+          <input type=number name="oi_quantity">
+
           <input type="submit" value="udpate">
-        </form>
-            <button type="button" class="custombtn addItemToCart" >UPDATE</button>
-            <div class="qty" foodid="<%= menuItem.foodId %>"> <%= cookies["010"] %></div>
-            <button type="button" class="custombtn subItemFromCart">Minus</button>
-          </div>
-        </div>
+
+
         <% }) %>
       <div class="line">
 

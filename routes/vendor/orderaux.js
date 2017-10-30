@@ -1,6 +1,6 @@
 "use strict"
 const express = require('express');
-const app  = express.Router();
+const app = express.Router();
 
 function selectDefaultOrder(orders) {
 
@@ -21,11 +21,11 @@ function selectDefaultOrder(orders) {
 // orders
 module.exports = (DataHelpers) => {
 
-// specific order
-    // get food, get menus, get a default menu and items to display
-    app.get("/", (req, res) => {
+        // specific order
+        // get food, get menus, get a default menu and items to display
+        app.get("/", (req, res) => {
 
-if (req.session.activeOrder) res.redirect(`/vendor/ordersaux/${req.session.activeOrder}`)
+            if (req.session.activeOrder) res.redirect(`/vendor/ordersaux/${req.session.activeOrder}`)
 
             DataHelpers.getOrders(null, (err, orders) => {
                 //         // we need to determine which is the start menu
@@ -36,46 +36,56 @@ if (req.session.activeOrder) res.redirect(`/vendor/ordersaux/${req.session.activ
             });
 
 
-    });
+        });
 
 
 
-app.get("/:id", (req, res) => {
+        app.get("/:id", (req, res) => {
 
-  DataHelpers.getFoodItems(null, (err, foodItems) => {
-let foodItemsObject = {};
-            foodItems.forEach((item) => {
-                foodItemsObject[item.id] = item;  });
-req.session.activeOrder = req.params.id;
-DataHelpers.getOrders(null, (err, orders) => {
+    DataHelpers.getFoodItems(null, (err, foodItems) => {
+        let foodItemsObject = {};
+        foodItems.forEach((item) => {
+            foodItemsObject[item.id] = item;
+        });
+        req.session.activeOrder = req.params.id;
+        DataHelpers.getOrders(null, (err, orders) => {
 
-let activeOrderArray = orders.filter((order) => {
-                    return order.id == req.params.id
-                });
-                if (activeOrderArray.length) {
-                    let activeOrder = activeOrderArray[0];
-                    DataHelpers.getOrderItems(activeOrder.id, (err, activeOrderItems) => {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            res.render('vendororder', {
-                                  orders: orders,
-                                  activeOrder: activeOrder,
-                                  activeOrderItems: activeOrderItems,
-                                  foodItems: foodItemsObject,
-                                  cookies: req.cookies });
-                                }
-                              });
-                  }
-                });
-});
-});
+            let activeOrderArray = orders.filter((order) => {
+                return order.id == req.params.id
+            });
+            if (activeOrderArray.length) {
+                let activeOrder = activeOrderArray[0];
+                DataHelpers.getOrderItems(activeOrder.id, (err, activeOrderItems) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        let orderTotal = 0;
+                        activeOrderItems.forEach((item) => {
+                            orderTotal = Number(item.price) + Number(orderTotal);
 
-// order items
-app.get("/items", (req, res) => {});
-// specific order item
-app.get("/items/:id", (req, res) => {});
+                        });
+                        res.render('vendororder', {
+                            orders: orders,
+                            activeOrder: activeOrder,
+                            activeOrderItems: activeOrderItems,
+                            foodItems: foodItemsObject,
+                            cookies: req.cookies,
+                            orderTotal: orderTotal
 
-return app;
+                        });
+                    };
+                })
+            }
+        });
+    }); });
 
-}
+
+
+                    // order items
+                    app.get("/items", (req, res) => {});
+                    // specific order item
+                    app.get("/items/:id", (req, res) => {});
+
+                    return app;
+
+                }
