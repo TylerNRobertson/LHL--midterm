@@ -63,7 +63,6 @@ module.exports = (DataHelpers) => {
 
             let foodItemJSON = {};
             if (!req.body.fi_json) {
-                console.log("food item update going to blow up");
                 foodItemJSON = {
                     id: req.params.id,
                     name: req.body.fi_name,
@@ -91,7 +90,6 @@ module.exports = (DataHelpers) => {
 // delete a food item
 router.delete("/:id", (req, res) => {
 
-    console.log(req.params.id);
     DataHelpers.deleteFoodItem(req.params.id, (err) => {
         if (err) {
             res.status(500).json({
