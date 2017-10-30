@@ -3,7 +3,7 @@ $abril: 'Abril Fatface', cursive;
   background-image: url("/visuals/images/headbg.jpg");
   height: 300px;
   margin-bottom: 5px;
-  border-bottom: solid black 10px;
+  border-bottom: solid black 2px;
 }
 button.cartbtn {
   background: transparent;
@@ -17,10 +17,28 @@ button.cartbtn {
   text-align: center;
   color: white;
   padding-top: 40px;
+  h1 {
+    font-size: 60px;
+  }
   p {
-    font-size: 25px;
+    font-size: 45px;
   }
   i {
     font-size: 22px;
+  }
+}
+#headernav {
+  text-align: center;
+  height: 50px;
+  .headnav {
+    font-size: 20px;
+    line-height: 40px;
+    color: black;
+    border-top: solid #4e64f4 2px;
+  }
+  .headnav:hover{
+    border-bottom: solid #4e64f4 2px;
+    text-decoration: none;
+    color: black;
   }
 }

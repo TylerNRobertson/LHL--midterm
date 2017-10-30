@@ -160,7 +160,6 @@ app.use("/vendor/foodaux", vendorFoodRoutes(DataHelpers));
 
 // Home page
 app.get("/", (req, res) => {
-
     res.render("landing");
 });
 
