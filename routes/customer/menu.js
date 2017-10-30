@@ -23,14 +23,6 @@ module.exports = (DataHelpers) => {
     app.get("/", (req, res) => {
 
 
-
-
-
-
-
-
-
-
         if (req.session.activeMenu) {
             res.redirect(`/customer/menus/${req.session.activeMenu}`);
         } else {

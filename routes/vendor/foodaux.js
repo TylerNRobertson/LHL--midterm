@@ -10,7 +10,7 @@ module.exports = (DataHelpers) => {
 
         DataHelpers.getFoodItems(null, (err, foodItems) => {
              if (err) {
-                        console.log(err);
+
                     } else {
                         res.render('vendorfood', {
                             foodItems: foodItems,
@@ -25,8 +25,7 @@ module.exports = (DataHelpers) => {
 
     // specific food
     app.get("/:id", (req, res) => {
-console.log(" get food item page", req.params.id);
-console.log("under construction");
+
         DataHelpers.getFoodItems(req.params.id, (err, foodItems) => {
              if (err) {
                         console.log(err);

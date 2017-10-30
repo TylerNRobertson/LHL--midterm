@@ -1,5 +1,6 @@
 "use strict"
-const express = require('express');
+
+// NOT used in the end, will explain why later
 const app  = express.Router();
 
 // menus

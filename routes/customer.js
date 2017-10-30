@@ -30,7 +30,7 @@ module.exports = (DataHelpers) => {
 
 // post a customer
   router.post("/", (req, res) => {
-console.log("customer post");
+
     DataHelpers.postCustomer({
                     first_name: req.body.c_first_name,
                     last_name: req.body.c_last_name,
@@ -41,8 +41,7 @@ console.log("customer post");
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
-        console.log("customer post");
-        console.log(result);
+
         res.status(201).redirect('/data');
       }
     });
@@ -64,8 +63,7 @@ console.log("customer post");
 
 // delete a customer
     router.delete("/:id", (req, res) => {
-        console.log("delete food item");
-        console.log(req.params.id);
+
         DataHelpers.deleteCustomer(req.params.id, (err) => {
             if (err) {
                 res.status(500).json({

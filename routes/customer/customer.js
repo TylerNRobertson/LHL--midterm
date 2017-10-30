@@ -8,10 +8,7 @@ module.exports = (DataHelpers) => {
 app.get("/", (req, res) => {
 if (!req.session.activeCustomer) { req.session.activeCustomer = 1}
   DataHelpers.getCustomers(req.session.activeCustomer,(err,result)=>{
-    console.log("getting customer")
-    console.log(req.session.activeCustomer);
 
-console.log(result)
   res.render('customercustomer',{ customer: result[0]});
 
   })
@@ -22,7 +19,6 @@ app.get("/:id", (req, res) => {});
 
 
   app.post("/", (req, res) => {
-console.log("customer post");
 
     DataHelpers.postCustomer({
                     first_name: req.body.c_first_name,

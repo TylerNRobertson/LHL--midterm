@@ -77,7 +77,6 @@ module.exports = (DataHelpers) => {
   });
 
   router.put("/items/:id", (req, res) => {
-  console.log("/items/:id");
           DataHelpers.updateOrderItem(JSON.parse(req.body.oi_json), (err) => {
             if (err) {
                 res.status(500).json({

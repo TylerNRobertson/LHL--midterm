@@ -24,19 +24,19 @@ let bcrypt = require('bcrypt');
 
 //////// function declarations ///////////
 
-const generateRandomString = function(){
-  // list of valid characters the random sequence can be composed of a-z + A-Z + 0-9 order doesn't matter
-  const aToZ = "qwertyuiopasdfghjklzxcvbnm";
-  // literal template
-  const validChars = `1234567890${aToZ}${aToZ.toUpperCase()}`;
-  let randomString = "";
-  let numberOfChars = 16;
+const generateRandomString = function() {
+    // list of valid characters the random sequence can be composed of a-z + A-Z + 0-9 order doesn't matter
+    const aToZ = "qwertyuiopasdfghjklzxcvbnm";
+    // literal template
+    const validChars = `1234567890${aToZ}${aToZ.toUpperCase()}`;
+    let randomString = "";
+    let numberOfChars = 16;
 
-// choose n number of chars randomly from the list of valid characters
-  for(let i = 0 ; i < numberOfChars ; i++){
-     randomString += validChars.charAt(Math.floor(Math.random()*validChars.length))
-  }
-  return(randomString);
+    // choose n number of chars randomly from the list of valid characters
+    for (let i = 0; i < numberOfChars; i++) {
+        randomString += validChars.charAt(Math.floor(Math.random() * validChars.length))
+    }
+    return (randomString);
 }
 
 
@@ -94,8 +94,10 @@ app.use(morgan('dev'));
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
 app.use(cookieParser());
-app.use(cookieSession({name : 'session',
-                       keys : [digest]}));
+app.use(cookieSession({
+    name: 'session',
+    keys: [digest]
+}));
 
 app.set("view engine", "ejs");
 // override with POST having ?_POSTOverride=PUT/DELETE method=POST
@@ -159,8 +161,9 @@ app.use("/vendor/foodaux", vendorFoodRoutes(DataHelpers));
 
 
 // Home page
+// changed to aux
 app.get("/", (req, res) => {
-    res.render("landing");
+       res.render("aux");
 });
 
 
@@ -174,25 +177,20 @@ app.get("/data", (req, res) => {
 //User Create Order page
 app.get("/create", (req, res) => {
 
-let activeMenuId = req.params.menuId || req.query.menuId;
+    let activeMenuId = req.params.menuId || req.query.menuId;
     DataHelpers.getMenus(null, (err, menus) => {
-        let activeMenu = menus.filter((menu)=>{ return menu.id == activeMenuId})[0];
-        console.log(activeMenu);
-        if (err) {
-            console.log(err);
-        } else {
-          if(!activeMenu){
-            activeMenu = selectDefaultMenu(menus);
-          };
-
+        let activeMenu = menus.filter((menu) => {
+            return menu.id == activeMenuId
+        })[0];
+        if (err) {} else {
+            if (!activeMenu) {
+                activeMenu = selectDefaultMenu(menus);
+            };
             // we need to determine which is the start menu
             // flag in the menu?
-            console.log("id before get items",activeMenu.id);
+
             DataHelpers.getMenuItems(activeMenu.id, (err, activeMenuItems) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                  console.log("id before rendor",activeMenu.id);
+                if (err) {} else {
                     res.render('index', {
                         menus: menus,
                         activeMenu: activeMenu,
@@ -200,7 +198,6 @@ let activeMenuId = req.params.menuId || req.query.menuId;
                     });
                 }
             });
-
         }
     });
 

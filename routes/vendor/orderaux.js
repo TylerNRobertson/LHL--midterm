@@ -12,11 +12,9 @@ function selectDefaultOrder(orders) {
             defaultOrder = order;
         };
     });
-
     return defaultOrder;
 
 };
-
 
 // orders
 module.exports = (DataHelpers) => {
@@ -64,13 +62,7 @@ module.exports = (DataHelpers) => {
                             orderTotal = Number(item.price) + Number(orderTotal);
 
                         });
-
-
                         DataHelpers.getCustomers(activeOrder.customerId,(err,result)=>{
-    console.log("getting customer")
-    console.log(req.session.activeCustomer);
-
-console.log(result)
 
                         res.render('vendororder', {
                             orders: orders,
@@ -87,8 +79,6 @@ console.log(result)
             }
         });
     }); });
-
-
 
                     // order items
                     app.get("/items", (req, res) => {});

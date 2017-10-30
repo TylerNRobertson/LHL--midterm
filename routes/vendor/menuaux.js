@@ -67,7 +67,6 @@ module.exports = (DataHelpers) => {
                     let activeMenu = activeMenuArray[0];
                     DataHelpers.getMenuItems(activeMenu.id, (err, activeMenuItems) => {
                         if (err) {
-                            console.log(err);
                         } else {
                             res.render('vendormenu', {
                                 menus: menus,
@@ -83,7 +82,7 @@ module.exports = (DataHelpers) => {
                     let activeMenu = selectDefaultMenu(menus);
                     DataHelpers.getMenuItems(activeMenu.id, (err, activeMenuItems) => {
                         if (err) {
-                            console.log(err);
+
                         } else {
                             res.render('vendormenu', {
                                 menus: menus,
@@ -105,11 +104,11 @@ module.exports = (DataHelpers) => {
     // menu items
     app.get("/:id/items", (req, res) => {
         // new item selection
-        console.log("here we have the add ADD menu item stuff");
+
 
         DataHelpers.getFoodItems(null, (err, foodItems) => {
             if (err) {
-                console.log(err);
+
             } else {
                 res.render('vendormenuitem', {
                     menuId: req.params.id,
@@ -131,8 +130,7 @@ module.exports = (DataHelpers) => {
     // menu items
     app.post("/:id/items/:foodId", (req, res) => {
         // new item selection
-        console.log("here we have the add ADD menu item stuff");
-        console.log(req.params);
+
 
         DataHelpers.postMenuItem({
             menuId: req.params.id,
@@ -153,8 +151,7 @@ module.exports = (DataHelpers) => {
 
     // delete a menu item
     app.delete("/items/:id", (req, res) => {
-        console.log("delete menu item");
-        console.log(req.params.id);
+
         DataHelpers.deleteMenuItem(req.params.id, (err) => {
             if (err) {
                 res.status(500).json({
@@ -170,8 +167,7 @@ module.exports = (DataHelpers) => {
 
     // delete a menu item
     app.post("/items/:id", (req, res) => {
-        console.log("POST!!!elete menu item");
-        console.log(req.params.id);
+
         DataHelpers.deleteMenuItem(req.params.id, (err) => {
             if (err) {
                 res.status(500).json({
@@ -187,8 +183,7 @@ module.exports = (DataHelpers) => {
 
     // delete a menu
     app.delete("/:id", (req, res) => {
-        console.log("delete menu");
-        console.log(req.params.id);
+
         DataHelpers.deleteMenu(req.params.id, (err) => {
             if (err) {
                 res.status(500).json({
@@ -211,7 +206,6 @@ module.exports = (DataHelpers) => {
             description: req.body.menudesc,
             category: req.body.menucat
         }, (err, result) => {
-            console.log("create menu", result);
             if (err) {
                 res.status(500).json({
                     error: err.message

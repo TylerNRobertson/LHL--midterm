@@ -6,7 +6,6 @@ module.exports = (DataHelpers) => {
 
 // get all items
     router.get("/items/", (req, res) => {
-      console.log("/items");
         DataHelpers.getMenuItems( null, (err, menuItems) => {
             if (err) {
                 res.status(500).json({
@@ -20,7 +19,6 @@ module.exports = (DataHelpers) => {
 
 // get all menus
     router.get("/", (req, res) => {
-      console.log("/");
         DataHelpers.getMenus(null, (err, menus) => {
             if (err) {
                 res.status(500).json({
@@ -35,7 +33,6 @@ module.exports = (DataHelpers) => {
 
 // get a single item
     router.get("/items/:id", (req, res) => {
-      console.log("items/:id");
         DataHelpers.getMenuItem(req.params.id
         , (err, menuItem) => {
             if (err) {
@@ -52,7 +49,6 @@ module.exports = (DataHelpers) => {
 
 // get item for a menu
     router.get("/:id/items/", (req, res) => {
-      console.log("/:id/items/");
         DataHelpers.getMenuItems(req.params.id
         , (err, menuItems) => {
             if (err) {
@@ -67,7 +63,6 @@ module.exports = (DataHelpers) => {
 
 
     router.get("/:id", (req, res) => {
-      console.log("/:id");
         DataHelpers.getMenus(req.params.id
         , (err, menus) => {
             if (err) {
@@ -150,8 +145,7 @@ module.exports = (DataHelpers) => {
 
     // delete a menu
     router.delete("/:id", (req, res) => {
-        console.log("delete menu");
-        console.log(req.params.id);
+
         DataHelpers.deleteMenu(req.params.id, (err) => {
             if (err) {
                 res.status(500).json({
@@ -168,7 +162,7 @@ module.exports = (DataHelpers) => {
 
     // delete a menu item
     router.delete("/items/:id", (req, res) => {
-        console.log("delete menu item");
+
         DataHelpers.deleteMenuItem(req.params.id, (err) => {
             if (err) {
                 res.status(500).json({
