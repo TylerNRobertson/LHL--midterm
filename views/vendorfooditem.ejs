@@ -34,34 +34,25 @@
 
         </nav>
     </header>
-    <section id="food_items">
-      <h1> FOOD ITEMS UPDATE</h1>
+    <section id="update_item">
+      <h1 style="text-align: center;">Update this Food Item</h1>
       <!-- This include is what shows the item pop up -->
 
 <% foodItems.forEach(function(foodItem,index) { %>
 <% if( (index ) % 3 === 0) { %>
-       <div class="line">
-        <div class="card">
-          <img src="http://via.placeholder.com/275x150">
-          <div class="card_body">
         <form action="/api/food/<%= foodItem.id %>?_POSTOverride=PUT" method="POST">
-          <textarea name="fi_name"><%= foodItem.name %></textarea>
-          <textarea name="fi_category"><%= foodItem.category %></textarea>
-          <textarea name="fi_type"><%= foodItem.type %></textarea>
-          <input type=number name="fi_prep_time_min"  value="<%= foodItem.prep_time_min %>">
-          <input type=number name="fi_pop_index" value="<%= foodItem.pop_index %>">
-          <input type=number name="fi_quantity"  value="<%= foodItem.quantity%>">
-          <input type=number step="0.01" name="fi_price"  value="<%= foodItem.price %>">
-          <textarea name="fi_description"  value="fi_description"><%= foodItem.description %></textarea>
-          <input type="submit" value="Update Food Item">
+          <textarea name="fi_name" class="makefoodtext" style="height: 45px;"><%= foodItem.name %></textarea>
+          <textarea name="fi_category" class="makefoodtext" style="height: 45px;"><%= foodItem.category %></textarea>
+          <textarea name="fi_type" class="makefoodtext" style="height: 45px;"><%= foodItem.type %></textarea>
+          <input type=number name="fi_prep_time_min"  value="<%= foodItem.prep_time_min %>" class="makefoodtext" style="height: 45px;">
+          <input type=number name="fi_pop_index" value="<%= foodItem.pop_index %>" class="makefoodtext" style="height: 45px;">
+          <input type=number name="fi_quantity"  value="<%= foodItem.quantity%>" class="makefoodtext" style="height: 45px;">
+          <input type=number step="0.01" name="fi_price"  value="<%= foodItem.price %>" class="makefoodtext" style="height: 45px;">
+          <textarea name="fi_description"  value="fi_description" class="makefoodtext" style="height: 100px;"><%= foodItem.description %></textarea>
+          <input type="submit" value="Update Food Item" class="btn btn-primary">
         </form>
-          </div>
-        </div>
     <%  } %>
         <% }) %>
-      <div class="line">
-
-      </div>
   </section>
   </body>
 </html>

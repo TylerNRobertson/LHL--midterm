@@ -24,8 +24,6 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/appaux.js"></script>
   </head>
-
-  <body>
     <header>
       <% include ./partials/vendor/header.ejs %>
 
@@ -34,57 +32,46 @@
 
         </nav>
     </header>
-    <section id="food_items">
-      <h1> FOOD ITEMS </h1>
+    <body style="background-color: #e8e8e8;">
+    <section id="create_item">
+      <h1 style="text-align: center;"> Create Item </h1>
       <!-- This include is what shows the item pop up -->
-       <div class="line">
-        <div class="card">
-          <img src="http://via.placeholder.com/275x150">
-          <div class="card_body">
-        <form action="/api/food" method="POST">
-          <textarea name="fi_name"  placeholder="fi_name"></textarea>
-          <textarea name="fi_category"  placeholder="fi_category"></textarea>
-          <textarea name="fi_type"  placeholder="fi_type"></textarea>
-          <input type=number name="fi_prep_time_min"  placeholder="fi_prep_time_min">
-          <input type=number name="fi_pop_index" placeholder="fi_pop_index">
-          <input type=number name="fi_quantity"  placeholder="fi_quantity">
-          <input type=number step="0.01" name="fi_price"  placeholder="fi_price">
-          <textarea name="fi_description"  placeholder="fi_description"></textarea>
-          <input type="submit" value="Make Food Item">
+        <form action="/api/food" method="POST" style="margin-bottom: 50px; text-align: center;">
+          <textarea name="fi_name"  placeholder="Name" class="makefoodtext"></textarea>
+          <textarea name="fi_category"  placeholder="Category" class="makefoodtext"></textarea>
+          <textarea name="fi_type"  placeholder="Type" class="makefoodtext"></textarea>
+          <input type=number name="fi_prep_time_min"  placeholder="Prep time in Mins" class="makefoodtext" style="height: 45px;">
+          <input type=number name="fi_pop_index" placeholder="Popularity" class="makefoodtext" style="height: 45px;">
+          <input type=number name="fi_quantity"  placeholder="Quantity" class="makefoodtext" style="height: 45px;">
+          <input type=number step="0.01" name="fi_price"  placeholder="Price" class="makefoodtext" style="height: 45px;">
+          <textarea name="fi_description"  placeholder="Description" class="makefoodtext" style="height: 100px;"></textarea>
+          <input type="submit" value="Make Food Item" class="btn btn-primary">
         </form>
-          </div>
-        </div>
+      </section>
+        <h1 style="text-align: center;">Food items</h1>
 <% foodItems.forEach(function(foodItem,index) { %>
 <% if( (index + 1) % 3 === 0) { %>
-
     <%  } %>
-        <div class="card">
+      <div class="line">
+        <div class="card" style="height: 450px;">
           <img src="http://via.placeholder.com/275x150">
           <div class="card_body">
-            <p> food ID <%= foodItem.id %>
-                 Food cat <%= foodItem.category %>
-                 foodid <%= foodItem.foodId %></p>
-            <p class="foodname">- name <%= foodItem.name %></p>
-            <p class="foodcat">- category <%= foodItem.category %></p>
-            <p class="fooddesc">- description <%= foodItem.description %></p>
-            <p class="foodprice">- price <%= foodItem.price %></p>
-            <p class="foodprep">- prep time <%= foodItem.prep_time_min %></p>
-            <p class="foodpopindex">- <%= foodItem.pop_index %> popularity</p>
+            <p><%= foodItem.name %></p>
+            <p class="foodcat" style="text-align: left;">- category <%= foodItem.category %></p>
+            <p class="fooddesc" style="text-align: left;">- description <%= foodItem.description %></p>
+            <p class="foodprice" style="text-align: left;">- price <%= foodItem.price %></p>
+            <p class="foodprep" style="text-align: left;">- prep time <%= foodItem.prep_time_min %></p>
+            <p class="foodpopindex" style="text-align: left; margin-bottom: 10px;">- <%= foodItem.pop_index %> popularity</p>
         <form action="/api/food/<%= foodItem.id %>?_POSTOverride=DELETE" method="POST">
-          <input type="submit" value="Delete <%= foodItem.id %>">
+          <input type="submit" value="Delete This Food" class="btn btn-primary">
         </form>
-
-
         <form action="/vendor/foodaux/<%= foodItem.id %>" method="GET">
-          <input type="submit" value="Modify <%= foodItem.id %>">
+          <input type="submit" value="Modify this Food" class="btn btn-primary">
         </form>
 
           </div>
         </div>
         <% }) %>
-      <div class="line">
-
       </div>
-  </section>
   </body>
 </html>

@@ -25,7 +25,6 @@
     <script type="text/javascript" src="/scripts/appaux.js"></script>
   </head>
 
-  <body>
     <header>
       <% include ./partials/vendor/header.ejs %>
 
@@ -46,6 +45,7 @@
           </ul>
         </nav>
     </header>
+    <body style="background-color: #e8e8e8;">
     <section id="menu_items">
       <h1 class="menuname"><%= activeMenu.name %>
        <form action="/vendor/menusaux/<%= activeMenu.id %>?_POSTOverride=DELETE" method="POST">
