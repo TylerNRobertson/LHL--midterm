@@ -6,9 +6,9 @@
     <!-- CSS/Vendor CSS cdn's -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link href="/styles/header.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/styles/user/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/buttons.css" type="text/css" />
-    <link href="/styles/header.css" rel="stylesheet" type="text/css" />
     <link href="/styles/user/order.css" rel="stylesheet" type="text/css" />
 
 
@@ -35,7 +35,7 @@
           <ul class="menu_list">
  <% menus.forEach(function(menu) { %>
               <li class="menu" id=`"menu_<%= menu.id %>">
-                <a href="/customer/menus/<%= menu.id %>"><%= menu.name %></a>
+                <a href="/customer/menus/<%= menu.id %>" class="btn-sm animated-button victoria-one" style="width: 200px; display: inline-block;"><%= menu.name %></a>
 
 
               </li>

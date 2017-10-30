@@ -10,9 +10,7 @@ const router = express.Router();
 module.exports = (DataHelpers) => {
 
     router.get("/items/", (req, res) => {
-        DataHelpers.getOrderItems({
-            all: true
-        }, (err, orderItems) => {
+        DataHelpers.getOrderItems(null, (err, orderItems) => {
             if (err) {
                 res.status(500).json({
                     error: err.message
@@ -25,9 +23,7 @@ module.exports = (DataHelpers) => {
     });
 
     router.get("/", (req, res) => {
-        DataHelpers.getOrders({
-            all: true
-        }, (err, orders) => {
+        DataHelpers.getOrders(null, (err, orders) => {
             if (err) {
                 res.status(500).json({
                     error: err.message
