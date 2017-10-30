@@ -30,7 +30,7 @@ module.exports = (DataHelpers) => {
 
 // post a customer
   router.post("/", (req, res) => {
-
+console.log("customer post");
     DataHelpers.postCustomer({
                     first_name: req.body.c_first_name,
                     last_name: req.body.c_last_name,
@@ -42,7 +42,7 @@ module.exports = (DataHelpers) => {
         res.status(500).json({ error: err.message });
       } else {
         console.log("customer post");
-        console.log(resuslt);
+        console.log(result);
         res.status(201).redirect('/data');
       }
     });

@@ -1,61 +1,78 @@
-DATABASE schema definitions are here:
-https://docs.google.com/spreadsheets/d/1tdfC2ywA8dXkJvKh55d5tS1ZJUAGKIOQ6y8Etg3Tjmw/edit#gid=2007291170
+
+# Restaurant Pick-up midterm project
+
+This app is an ordering/pick-up app which allows vendors to manage their orders, menus/menu items and food items which will be made availabe to order in the customer views.
+
+# Getting Started
+
+The app should be started on localhost:8080/aux
+
+The .env file we used has the following contents for the DB connection
+
+DB_HOST=localhost
+DB_USER=labber
+DB_PASS=labber
+DB_NAME=midterm
+DB_SSL=true if heroku
+DB_PORT=5432
 
 
-PUT ORDER will update the session order
+The app is thus split into 2 views - The vendor management view and the customer order view.
 
-POST ORDER will actually create it.
+## Vendor View
 
-Customers can modify the session not the order
-Vendor can modify the order
+The Vendor side of the app has essentially 3 views:
 
+### Food Items View
 
-How the work has been divided so far:
-Front/Back-end division
+Food Items are what can be ordered by the customer. Food Items can be created, modified and deleted. All menu items are built off of these food items. Without food items, there is no restaurant.
 
-all api routing done on the backend
-all the screen flow done on the frontend
-frontend requests data via ajax JSON calls.
+### Menu/Menu Items View
 
-# THINGS TO DO
+Food Items need to be organized and presented in some manner. This app does so through menu and menu items. Menus are a collection of menu items and menu items create the link between a menu and one or more food items. Only foods which are linked to a menu can be seen/ordered by the customer. Like food items, menu and menu items can be created, deleted or modified.
 
+### Orders View
 
-pass as parameter the active menu for the create order screen
+The Vendor Order view provides a list of all orders that have been made at the restaurant. Details of orders and the relevant customer information can be retrieved and are displayed on the same page. Orders cannot be deleted
 
+## Customer View
 
+The customer, or ordering view, allow a customer to order from a list of menus, verify their order and view/modify their profile
 
-have all the a=hrefs /create/?
-Analysis
+### Menu View
 
-index.html
+The customer select the menu of their choice and can choose to order menu items
 
-FRIDAY OCT 27.
+### Order View
 
-1.put alert boxes everywhere for any event that needs to be handled
-2.assign a class/classes/ids/whatevers to whatever events need to be verified
-3.Start clicking on things and work to replace the alert boxes with code, or with nothing
+The order view displays the current order
 
-Start the routing for the test webpages and loader
+### Customer View
 
-
-## SCARP THE FOLLOWING BUT THINK ABOUT IT FOR LATER
-Take advantage of the bubbling event propagation
-
-onClick listener api (delegated to higher level to allow for data checks/ stopevent propagation in order to allow for frontend page redirects )gets/put/delete/posts linked to class
-
-onClick listener for data check at "closer" level
-
-OR (could just have functions called at the same place in order avoid confusion)
-
-idea is to keep functionality separate, possibly in totally separate script files.
-## END OF SCRAP IDEA.
-
-Sunday AM - refactor
-Sunday PM - retest rehearse.
-
-checker.js (can we)
+The customer view displays profile information including address, phone, email etc.
 
 
+## Dependencies
+
+- Express 4.16.2
+- Ejs 2.4.1
+- DotEnv 2.0.0
+- Node 5.10.x or above
+- Cookie Session 2.0.0
+- KNEX 0.11.7
+- KNEX logger 0.1.0
+- Method-override 2.3.10
+- PG 6.0.2
+- Bcrypt 1.0.3
+- Body-Parser 1.18.2
+- NodeMon 1.9.2
+- Node-Sass-Middleware 0.11.0
+- Chance 1.0.11
+
+
+# Notes:
+
+## User Stories
 
 List of user Stories
 
@@ -64,7 +81,7 @@ Verbs are in **bold**
 
 Some of these stories might be contradictory or too complicated.
 
-# Customer user stories
+### Customer user stories
 
 * As a _CUSTOMER_ I want to **VIEW** a _MENU_
 * As a _CUSTOMER_ I want to **SELECT** a _MENU_ by _CATEGORY_
@@ -93,7 +110,7 @@ Some of these stories might be contradictory or too complicated.
 * As a _CUSTOMER_ I want to **SORT** a _MENU_ and _MENU ITEMS_ by _PRICE_
 * As a _CUSTOMER_ I want to **SORT** a _MENU_ and _MENU ITEMS_ by _CATEGORY_
 
-# Vendor user stories
+### Vendor user stories
 
 
 * As a _VENDOR_ I want to **CREATE** a _MENU_
@@ -143,3 +160,8 @@ Some of these stories might be contradictory or too complicated.
 * As a _VENDOR_ I want to **VIEW** _ORDER ITEMS of an _ORDER_
 * As a _VENDOR_ I want to **SEARCH** for an _ORDER_ by _CUSTOMER_
 * As a _VENDOR_ I want to **SEARCH** for an _ORDER_ by _FOOD_
+
+### Database design
+
+DATABASE schema definitions are here:
+https://docs.google.com/spreadsheets/d/1tdfC2ywA8dXkJvKh55d5tS1ZJUAGKIOQ6y8Etg3Tjmw/edit#gid=2007291170

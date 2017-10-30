@@ -9,5 +9,10 @@ app.get("/", (req, res) => {});
 // specific order
 app.get("/:id", (req, res) => {});
 
+  app.post("/", (req, res) => {
+res.redirect("/vendor/ordersaux");
+
+      });
+
 return app;
 }

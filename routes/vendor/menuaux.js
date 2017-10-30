@@ -37,13 +37,15 @@ module.exports = (DataHelpers) => {
 
     });
 
-app.get("/new", (req, res) => {
-DataHelpers.getMenus(null, (err, menus) => {
-                //         // we need to determine which is the start menu
+    app.get("/new", (req, res) => {
+        DataHelpers.getMenus(null, (err, menus) => {
+            //         // we need to determine which is the start menu
 
-                res.render("vendormenunew", {menus : menus});
+            res.render("vendormenunew", {
+                menus: menus
+            });
+        });
     });
-});
 
     // specific menu
     app.get("/:id", (req, res) => {
@@ -68,11 +70,11 @@ DataHelpers.getMenus(null, (err, menus) => {
                             console.log(err);
                         } else {
                             res.render('vendormenu', {
-                                  menus: menus,
-                                  activeMenu: activeMenu,
-                                  activeMenuItems: activeMenuItems,
-                                  foodItems: foodItemsObject,
-                                  cookies: req.cookies
+                                menus: menus,
+                                activeMenu: activeMenu,
+                                activeMenuItems: activeMenuItems,
+                                foodItems: foodItemsObject,
+                                cookies: req.cookies
                             });
                         }
                     });
@@ -102,33 +104,33 @@ DataHelpers.getMenus(null, (err, menus) => {
 
     // menu items
     app.get("/:id/items", (req, res) => {
-      // new item selection
+        // new item selection
         console.log("here we have the add ADD menu item stuff");
 
         DataHelpers.getFoodItems(null, (err, foodItems) => {
-             if (err) {
-                        console.log(err);
-                    } else {
-                        res.render('vendormenuitem', {
-                            menuId: req.params.id,
-                            foodItems: foodItems,
-                            cookies: req.cookies,
-                            session: req.session
-                        });
-                    }
+            if (err) {
+                console.log(err);
+            } else {
+                res.render('vendormenuitem', {
+                    menuId: req.params.id,
+                    foodItems: foodItems,
+                    cookies: req.cookies,
+                    session: req.session
                 });
+            }
+        });
 
 
-            });
+    });
 
 
 
     // specific menu item
     app.get("/id/items/:itemId", (req, res) => {});
     // viewing/deleting/updating -- probably won't use
-   // menu items
+    // menu items
     app.post("/:id/items/:foodId", (req, res) => {
-      // new item selection
+        // new item selection
         console.log("here we have the add ADD menu item stuff");
         console.log(req.params);
 
@@ -149,7 +151,7 @@ DataHelpers.getMenus(null, (err, menus) => {
     });
 
 
-        // delete a menu item
+    // delete a menu item
     app.delete("/items/:id", (req, res) => {
         console.log("delete menu item");
         console.log(req.params.id);
@@ -164,9 +166,9 @@ DataHelpers.getMenus(null, (err, menus) => {
         });
 
 
-      });
+    });
 
-     // delete a menu item
+    // delete a menu item
     app.post("/items/:id", (req, res) => {
         console.log("POST!!!elete menu item");
         console.log(req.params.id);
@@ -181,7 +183,7 @@ DataHelpers.getMenus(null, (err, menus) => {
         });
 
 
-      });
+    });
 
     // delete a menu
     app.delete("/:id", (req, res) => {
@@ -201,15 +203,15 @@ DataHelpers.getMenus(null, (err, menus) => {
     });
 
 
-   // post a menu
+    // post a menu
     app.post("/", (req, res) => {
 
         DataHelpers.postMenu({
             name: req.body.menuname,
             description: req.body.menudesc,
             category: req.body.menucat
-        }, (err,result) => {
-          console.log("create menu", result);
+        }, (err, result) => {
+            console.log("create menu", result);
             if (err) {
                 res.status(500).json({
                     error: err.message
@@ -225,5 +227,3 @@ DataHelpers.getMenus(null, (err, menus) => {
     return app;
 
 }
-
-

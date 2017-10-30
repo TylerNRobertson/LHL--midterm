@@ -22,48 +22,12 @@ module.exports = (DataHelpers) => {
     // get food, get menus, get a default menu and items to display
     app.get("/", (req, res) => {
 
-        console.log("active")
-        console.log(req.session.activeCustomer);
-        console.log(req.session.activeOrder);
-
-        if (!req.session.activeCustomer) {
-            // create active customer.
-            req.session.activeCustomer = {};
-            DataHelpers.postCustomer({}, (err, result) => {
 
 
-                req.session.activeCustomer.id = result[0];
-                DataHelpers.getCustomers(result[0], (err, result) => {
-                    req.session.activeCustomer = result[0];
-                    console.log("default customer");
-                    console.log(req.session.activeCustomer);
-                    DataHelpers.postOrder(null, (err, result) => {
-                        console.log("post order result");
-                        console.log(result);
-                        req.session.activeOrder = {};
-                        req.session.activeOrder.id = result[0];
-                        req.session.activeOrder.items = {};
-                        console.log(req.session.activeOrder)
-                    })
-                });
 
 
-            });
-        }
 
 
-        if (!req.session.activeOrder) {
-req.session.activeOrder = {};
-            // create active order for the customer
-            DataHelpers.postOrder(null, (err, result) => {
-                console.log("post order result II");
-                console.log(result);
-                req.session.activeOrder.id = result[0];
-                req.session.activeOrder.id = result[0];
-                req.session.activeOrder.items = {};
-                cosole.log(req.session.activeOrder)
-            })
-        }
 
 
 
@@ -110,7 +74,7 @@ req.session.activeOrder = {};
                                 activeMenuItems: activeMenuItems,
                                 foodItems: foodItemsObject,
                                 cookies: req.cookies,
-                                activeOrder: req.session.activeOrder
+                                activeOrder: 1
                             });
                         }
                     });

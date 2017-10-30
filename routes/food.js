@@ -30,11 +30,9 @@ module.exports = (DataHelpers) => {
                     error: err.message
                 });
             } else {
-
                 res.json(foodItems);
             }
         });
-
     });
 
     // post a food item

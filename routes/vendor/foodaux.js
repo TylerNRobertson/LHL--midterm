@@ -40,53 +40,6 @@ console.log("under construction");
                 });
             });
 
-      //   DataHelpers.getFoodItems(null, (err, foodItems) => {
-      //     let foodItemsObject = {};
-      //     foodItems.forEach((item)=>{ foodItemsObject[item.id] = item });
-
-      //   DataHelpers.getMenus(null, (err, menus) => {
-      //       // we need to determine which is the start menu
-      //       // flag in the menu?
-
-
-      //       let activeMenuArray = menus.filter((menu) => {
-      //           return menu.id == req.params.id
-      //       });
-      //       if (activeMenuArray.length) {
-      //           let activeMenu = activeMenuArray[0];
-      //           DataHelpers.getMenuItems(activeMenu.id, (err, activeMenuItems) => {
-      //               if (err) {
-      //                   console.log(err);
-      //               } else {
-      //                   res.render('vendormenu', {
-      //                       menus: menus,
-      //                       activeMenu: activeMenu,
-      //                       activeMenuItems: activeMenuItems,
-      //                       foodItems: foodItemsObject,
-      //                       cookies: req.cookies
-      //                   });
-      //               }
-      //           });
-      //           // something happened just go to index page
-      //       } else {
-      //           let activeMenu = selectDefaultMenu(menus);
-      //           DataHelpers.getMenuItems(activeMenu.id, (err, activeMenuItems) => {
-      //               if (err) {
-      //                   console.log(err);
-      //               } else {
-      //                   res.render('vendormenu', {
-      //                       menus: menus,
-      //                       activeMenu: activeMenu,
-      //                       activeMenuItems: activeMenuItems,
-      //                       foodItems: foodItemsObject,
-      //                       cookies: req.cookies
-      //                   });
-      //               }
-      //           });
-      //       }
-      //   });
-      // });
-
 
 
 

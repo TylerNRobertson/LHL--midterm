@@ -64,14 +64,23 @@ module.exports = (DataHelpers) => {
                             orderTotal = Number(item.price) + Number(orderTotal);
 
                         });
+
+
+                        DataHelpers.getCustomers(activeOrder.customerId,(err,result)=>{
+    console.log("getting customer")
+    console.log(req.session.activeCustomer);
+
+console.log(result)
+
                         res.render('vendororder', {
                             orders: orders,
                             activeOrder: activeOrder,
                             activeOrderItems: activeOrderItems,
                             foodItems: foodItemsObject,
                             cookies: req.cookies,
-                            orderTotal: orderTotal
-
+                            orderTotal: orderTotal,
+                            customer: result[0]
+});
                         });
                     };
                 })
